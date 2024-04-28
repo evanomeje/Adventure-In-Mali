@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title> Adventure's in Mali</title>
+
+    </head>
+    <body style="background-color: #e9e9e9;">
+        
+        <a href="https://github.com/evanomeje">
+        <button> Exit Game </button>
+    </a>
+        <hr>
+
+
+    <img src="20240307_093208.jpg" height = 600 alt = " You enter the kingdom of Mali. The choice is yours">
+    <p>Hello, <span id="username">User</span> , welcome to the ancient land of Mali. My name is Sadio,</p>
+    <p> I will be guiding you through the legendary city of Djenne, surrounded </p>
+    <p>by whispers of its rich history and hidden treasures.</p>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const username = params.get('fname');
+        document.getElementById('username').innerText = username || 'User';
+    </script>
+    font-family: "consolas";
+    <p>################################################################# </p>
+    <p>### Are you ready to embark on a journey of discovery and adventure? <b> <big> (y/n) </big> </b> ##</p>
+    <p>################################################################# </p>
+
+    <label for = "choice" > :</label>
+    <input type="text" id = "choice" name = "choice" required>
+
+
+    </body>
+
+
+
+
+
+
+
+
+
+</html>
