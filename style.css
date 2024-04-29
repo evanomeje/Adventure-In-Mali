@@ -101,14 +101,35 @@ form {
 
 .intro {
     font-family: 'roboto';
-    font-size: 30px;
+    font-size: 26.3px;
     border: 1px solid black;
+    padding: 10px;
+    position: relative;
+    top: -10px
 }
 
 .intro_Question {
     font-family: 'roboto';
-    font-size: 30px; 
-    border: 1px dashed black;
+    font-size: 25.2px; 
+    border: 1px solid black;
+    padding: 10px;
+    position: relative;
+    top: -47px;
+    right: 32px;
+}
+
+.intro_Question_Choice {
+    font-family: 'Press Start 2P';
+    border: 1px solid black;
+    padding: 10px;
+    font-size:24px;
+    position: relative;
+    top: -148px;
+    left: 385px;
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content; /* Ensures the width fits the content */
+
 }
 
 .game-title {
