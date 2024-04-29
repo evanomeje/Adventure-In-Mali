@@ -27,7 +27,13 @@ button:hover {
     display: inline-block;
     font-size: 24px;
     position: relative;
-}
+} 
+
+/*.tracking-pad {
+    display: inline-block;
+    font-size: 30px;
+    text-align: center;
+} */
 
 label[for="fname"] {
     font-family: 'Press Start 2P';
@@ -94,6 +100,21 @@ form {
 }
 
 .intro {
-    font-family: 'Jersey 24 ';
+    font-family: 'roboto';
     font-size: 30px;
+    border: 1px solid black;
+}
+
+.intro_Question {
+    font-family: 'roboto';
+    font-size: 30px; 
+    border: 1px dashed black;
+}
+
+.game-title {
+    text-align: center;
+}
+
+img {
+    border: 2px solid black; 
 }
