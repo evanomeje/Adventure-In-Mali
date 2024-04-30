@@ -114,35 +114,40 @@ form {
     border: 1px solid black;
     padding: 5px 10px;
     position: relative;
-    top: -47px;
-    right: 32px;
+    top: -43px;
+    right:75px;
     width: calc(50% - 166px);
     box-sizing: border-box;
     float: left;
 }
 
 .Yes_Button {
+
     font-family: 'Press Start 2P';
     border: 1px solid black;
     padding: 10px;
-    font-size:24px;
+    font-size:17px;
     position: relative;
-    top: -148px;
-    left: 385px;
+    top: -128px;
+    left: 300px;
     margin-left: auto;
     margin-right: auto;
+   
 }
 
 .No_Button {
+   
+
     font-family: 'Press Start 2P';
     border: 1px solid black;
     padding: 10px;
-    font-size:24px;
+    font-size:17px;
     position: relative;
-    top: -148px;
-    left: 385px;
+    top: -204px;
+    left: 389px;
     margin-left: auto;
     margin-right: auto;
+    
 }
 
 
