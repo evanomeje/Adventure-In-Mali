@@ -117,9 +117,11 @@ form {
     left: 340.2px;
     color: #8dc14d;
 }
+
 .Yes_Button:hover {
     background-color: #8dc14d;
 }
+
 .No_Button {
     top: -153px;
     left: 390px;
