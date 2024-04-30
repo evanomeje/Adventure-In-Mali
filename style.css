@@ -4,36 +4,24 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 0;
-    position: relative;
-}
-
-a {
-    text-decoration: none;
+    
+    
+    
 }
 
 button {
     font-family: 'Jersey 10 Charted';
     font-size: 35px;
     cursor: pointer;
-    padding: 2px; /* Adjust the padding to make the text fill the entire button */
-}
-
-button:hover {
-    background-color: #d65c5c;
+    padding: 2px; 
 }
 
 .tracking-pad {
     display: inline-block;
     font-size: 24px;
-    position: relative;
-} 
-
-/*.tracking-pad {
-    display: inline-block;
-    font-size: 30px;
     text-align: center;
-} */
+    margin-top: 10px;
+}
 
 label[for="fname"] {
     font-family: 'Press Start 2P';
@@ -49,12 +37,14 @@ h1 {
 input[type="submit"],
 input[type="reset"] {
     font-family: 'Press Start 2P';
-    font-size: 35px;
+    font-size: 30px;
     cursor: pointer;
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
     margin-right: 10px;
+    margin-left: 0;
+    margin-top: 10px;
 }
 
 input[type="submit"] {
@@ -81,18 +71,24 @@ input[type="reset"]:focus {
 input[type="text"] {
     font-family: 'Press Start 2P';
     font-size: 30px;
-    width: 550px;
+    width: 540px;
     border: 2px solid black;
+    padding: 5px;
 }
 
 .exit-container {
     position: absolute;
-    top: 10px;
-    left: 10px;
+    top: 20px;
+    left: 20px;
 }
 
-.container {
+.Base-structure {
     text-align: center;
+    position: relative;
+}
+
+.Base-structure img {
+    border: 2px solid black; 
 }
 
 form {
@@ -100,61 +96,55 @@ form {
 }
 
 .intro {
-    font-family: 'roboto';
+    font-family: 'Roboto';
     font-size: 26.3px;
     border: 1px solid black;
     padding: 10px;
     position: relative;
-    top: -10px
+    top: -10px;
 }
 
 .intro_Question {
-    font-family: 'roboto';
+    font-family: 'Roboto';
     font-size: 25px; 
     border: 1px solid black;
     padding: 5px 10px;
     position: relative;
     top: -43px;
-    right:75px;
-    width: calc(50% - 166px);
+    right: 50px;
+    width: calc(50% - 120px);
     box-sizing: border-box;
     float: left;
+    text-align: center; 
 }
 
-.Yes_Button {
-
+.Yes_Button, .No_Button {
     font-family: 'Press Start 2P';
     border: 1px solid black;
     padding: 10px;
-    font-size:17px;
+    font-size: 17px;
     position: relative;
-    top: -128px;
-    left: 300px;
     margin-left: auto;
     margin-right: auto;
-   
-}
-
-.No_Button {
-   
-
-    font-family: 'Press Start 2P';
-    border: 1px solid black;
-    padding: 10px;
-    font-size:17px;
-    position: relative;
-    top: -204px;
-    left: 389px;
-    margin-left: auto;
-    margin-right: auto;
-    
-}
-
-
-.game-title {
     text-align: center;
 }
 
-img {
-    border: 2px solid black; 
+.Yes_Button {
+    top: -111px;
+    left: 340.2px;
+    color: #8dc14d;
+}
+
+.Yes_Button:hover {
+    background-color: #8dc14d;
+}
+
+.No_Button {
+    top: -153px;
+    left: 390px;
+    color: #d65c5c;
+}
+
+.No_Button:hover {
+    background-color: #d65c5c;
 }
