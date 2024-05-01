@@ -4,6 +4,9 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-bottom: 0; 
+    margin: 0;
+    padding-bottom: 20px;
     
     
     
@@ -28,6 +31,7 @@ h1 {
     font-size: 35px;
     font-weight: bold;
     color: #0a0a0a;
+    
 }
 input[type="submit"],
 input[type="reset"] {
@@ -69,10 +73,13 @@ input[type="text"] {
     position: absolute;
     top: 20px;
     left: 20px;
+    position: fixed;
 }
 .Base-structure {
     text-align: center;
     position: relative;
+    margin-bottom: 0; 
+    
 }
 .Base-structure img {
     border: 2px solid black; 
@@ -80,6 +87,7 @@ input[type="text"] {
 form {
     text-align: center;
 }
+
 .intro {
     font-family: 'Roboto';
     font-size: 26.3px;
@@ -88,19 +96,25 @@ form {
     position: relative;
     top: -10px;
 }
+
+
 .intro_Question {
     font-family: 'Roboto';
     font-size: 25px; 
     border: 1px solid black;
     padding: 5px 10px;
     position: relative;
-    top: -43px;
+    top: -5px;
     right: 50px;
     width: calc(50% - 120px);
     box-sizing: border-box;
     float: left;
     text-align: center; 
+
+    
 }
+
+
 .Yes_Button, .No_Button {
     font-family: 'Press Start 2P';
     border: 1px solid black;
@@ -111,8 +125,9 @@ form {
     margin-right: auto;
     text-align: center;
 }
+
 .Yes_Button {
-    top: -111px;
+    top: -17px;
     left: 340.2px;
     color: #8dc14d;
 }
@@ -122,10 +137,17 @@ form {
 }
 
 .No_Button {
-    top: -153px;
+    top: -30px;
     left: 390px;
     color: #d65c5c;
 }
 .No_Button:hover {
     background-color: #d65c5c;
 }
+
+.intro_Question, .Yes_Button, .No_Button {
+
+    margin: -15px;
+    
+}
+
