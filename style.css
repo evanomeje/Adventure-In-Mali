@@ -161,3 +161,70 @@ form {
 
 }
 
+.Questionnaire {
+    background: #000000;
+    width: 90%;
+    max-width: 600px;
+    margin:100px auto 0;
+    border-radius: 10px;
+    padding: 30px;
+}
+
+.DjenneQuestionnaire {
+
+    padding: 30% 0;
+
+}
+
+.DjenneQuestionnaire h2 {
+    font-size: 18px;
+    color: #000000;
+    font-weight: 600;
+
+}
+
+.btn {
+    background: #fff;
+    color: #222;
+    font-weight: 500;
+    width: 100%;
+    border: 1px solid #222;
+    padding: 10px;
+    margin: 10px 0;
+    text-align: left;
+    border-radius: 4px;
+    cursor: poiner;
+    transition: all 0.3s;
+}
+
+.btn:hover {
+    background: #222;
+    color: #fff;
+}
+
+/* Add your existing styles here */
+
+#user-answer {
+    margin-top: 10px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+}
+
+#answer-feedback {
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.correct {
+    border: 2px solid green;
+}
+
+.incorrect {
+    border: 2px solid red;
+}
+
+
