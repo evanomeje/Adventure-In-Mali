@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 <head>
     <link rel="stylesheet" href="style.css">
-    <title>Questionnaire Round</title>
+    <title>Adventure's in Mali - Questionnaire Round</title>
 </head>
 <body>
     <h1>*Adventure's in Mali*</h1>
 
     <div id = "question-box" class = "question-box"></div>
+    
 
-    <div id = "answer-box" class = "answer-box"></div>
+    <div id="answer-box1" class="answer-box"></div>
+    <div id="answer-box2" class="answer-box"></div>
+    <div id="answer-box3" class="answer-box"></div>
+
+    
 
 
-    <form action = "Questionnaire.html" method = "get">
+    <form id= "QuestionnaireGame" action = "index.html" method = "get">
 
         <div class="tracking-pad">
             <label for="fname">Enter:</label>
@@ -19,22 +24,17 @@
             
         </div>
 
-        <button class="Yes_Button"><big>*</big></button>
-        <button class="No_Button"><big>*</big></button>
-
+        <div id="options-container"></div>
         
 
-
+        <button type="button" class= "Yes_Button" onclick="checkAnswer()" ><big>*</big></button>
+        <button type="button" class="No_Button" onclick="resetInput()"><big>*</big></button>
+       
     </form>
 
-    
 
 
-
-
-
-
-
+    <script src="Questionnaire.js"></script>
 
     
 </body>
