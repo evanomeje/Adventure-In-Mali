@@ -1,41 +1,36 @@
 <!DOCTYPE html>
+<html lang="en">
 <head>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adventure's in Mali - Questionnaire Round</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>*Adventure's in Mali*</h1>
+    <h1>Adventures in Mali</h1>
 
-    <div id = "question-box" class = "question-box"></div>
-    
+    <div id="question-box" class="question-box"></div>
 
     <div id="answer-box1" class="answer-box"></div>
     <div id="answer-box2" class="answer-box"></div>
     <div id="answer-box3" class="answer-box"></div>
 
-    
-
-
-    <form id= "QuestionnaireGame" action = "index.html" method = "get">
+    <form id="QuestionnaireGame" action="index.html" method="get">
 
         <div class="tracking-pad">
             <label for="fname">Enter:</label>
             <input type="text" id="fname" name="fname" placeholder="*" required>
-            
         </div>
 
         <div id="options-container"></div>
-        
 
-        <button type="button" class= "Yes_Button" onclick="checkAnswer()" ><big>*</big></button>
+        <button type="button" class="Yes_Button" onclick="checkAnswer()"><big>*</big></button>
         <button type="button" class="No_Button" onclick="resetInput()"><big>*</big></button>
+
+        <button type="button" class="next_button" onclick="nextQuestion()">NEXT</button>
        
     </form>
 
-
-
     <script src="Questionnaire.js"></script>
-
-    
 </body>
 </html>
