@@ -89,6 +89,8 @@ form {
 }
 
 .intro {
+    width: 800px;
+    height: 100px;
     font-family: 'Roboto';
     font-size: 26.3px;
     border: 1px solid black;
@@ -249,6 +251,12 @@ questionnaire section */
     margin: 0px auto;
     text-align: center;
     
+}
+
+.game-box {
+    height: 550px;
+    width: 815px;
+    border: 2px solid #000;
 }
 
 
