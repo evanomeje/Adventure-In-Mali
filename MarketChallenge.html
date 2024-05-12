@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adventure's in Mali - Puzzle Round</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Adventures in Mali</h1>
+    <img src="20240307_093208.jpg" height="550" alt="You enter the kingdom of Mali. The choice is yours">
+    
+    <div id="market-challenge-game-display" class="market-challenge-game-display">
+
+    <div id="game-box" class="game-box">
+        <div id="market-challenge-instruction" class="market-challenge-instruction">
+            <p>Objective: Gather materials to create your ceremonial mask.</p>
+        </div>
+        <p>Available Materials:</p>
+        <p>✣ Black Soap</p>
+        <p>✣ Clay</p>
+        <p> ✣ Beads</p>
+        <p> ✣ Cowrie</p>
+        <p> ✣ Pigment</p>
+        <p> ✣ Cayenne Pepper</p>
+        <p> ✣ Knife</p>
+        <p> ✣ Hausa Leather Shoes</p>
+        <p> ✣ Clay Pot</p>
+        <p> ✣ Wood</p>
+        <p> ✣ Palm Oil</p>
+        <p> ✣ Benin Bronze</p>
+        <p> ✣ Elephant Tusk</p>
+        <p> ✣ Wooden Spoons</p>
+        <p> ✣ Kente Fabric</p>
+        <div id="market-challenge-hint" class="market-challenge-hint">
+            <p>*Hint: Your beaded mask is shelled and carved, </p> 
+             <p> coloured with materials of the earth and sharpened </p>
+             <p>    by the desires of your mind*</p>
+        </div>
+    </div>
+
+    <div id="show-collection" class="show-collection"></div>
+
+</div>
+
+
+
+
+
+
+
+
+    
+    <form id="PuzzleGame" action="index.html" method="get">
+
+        <div class="tracking-pad">
+            <label for="fname">Enter:</label>
+            <input type="text" id="fname" name="fname" placeholder="*" required>
+        </div>
+
+        <div id="options-container"></div>
+
+        <button type="button" class="Yes_Button" onclick="checkAnswer()"><big>*</big></button>
+        <button type="button" class="No_Button" onclick="resetInput()"><big>*</big></button>
+
+       
+    </form>
+
+    <script src="Questionnaire.js"></script>
+</body>
+</html>
