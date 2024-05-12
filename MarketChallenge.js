@@ -11,9 +11,9 @@ class MarketChallenge {
       
         this.collection.forEach(item => {
             const textBox = document.createElement("input");
-            textBox.type = "text";
+            textBox.type = "custom-textbox";
             textBox.value = `* ${item}`;
-            textBox.size = 170000000000000000000; 
+            textBox.classList.add("custom-textbox");
             textBox.readOnly = true; 
             collectionText.appendChild(textBox);
             collectionText.appendChild(document.createElement("br")); 
@@ -34,6 +34,8 @@ class MarketChallenge {
         }
     }
 }
+
+
 
 const marketChallenge = new MarketChallenge(["Wood", "Clay", "Beads", "Cowrie", "Knife", "Pigment"]);
 

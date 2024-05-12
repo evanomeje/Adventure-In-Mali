@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adventure's in Mali - Puzzle Round</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+    
+    </style>
 </head>
 <body>
     <h1>Adventures in Mali</h1>
@@ -46,29 +49,21 @@
 
 </div>
 
+<form id="PuzzleGame" action="index.html" method="get">
 
+    <div class="tracking-pad">
+        <label for="fname">Enter:</label>
+        <input type="text" id="fname" name="fname" placeholder="*" required>
+    </div>
 
+    <div id="options-container"></div>
 
+    <button type="button" class="Yes_Button" onclick="checkAnswer()"><big>*</big></button>
+    <button type="button" class="No_Button" onclick="resetInput()"><big>*</big></button>
 
+   
+</form>
 
-
-
-    
-    <form id="PuzzleGame" action="index.html" method="get">
-
-        <div class="tracking-pad">
-            <label for="fname">Enter:</label>
-            <input type="text" id="fname" name="fname" placeholder="*" required>
-        </div>
-
-        <div id="options-container"></div>
-
-        <button type="button" class="Yes_Button" onclick="checkAnswer()"><big>*</big></button>
-        <button type="button" class="No_Button" onclick="resetInput()"><big>*</big></button>
-
-       
-    </form>
-
-    <script src="MarketChallenge.js"></script>
+<script src="MarketChallenge.js"></script>
 </body>
 </html>
