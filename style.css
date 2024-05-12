@@ -22,6 +22,7 @@ button {
     font-size: 24px;
     text-align: center;
     margin-top: 10px;
+
 }
 label[for="fname"] {
     font-family: 'Press Start 2P';
@@ -337,10 +338,11 @@ padding: 20px;
 
 .hidden-image {
     display: none;
+    position: relative; /* Use relative positioning to adjust from its normal position */
+    /* Adjust this value as needed to move the image up */
+    left: 250px; /* Adjust this value as needed to move the image to the right */
     max-width: 100px; /* Adjust this value as needed */
-    max-height: 100px; 
-    left: 100%;
-    
+    max-height: 100px; /* Adjust this value as needed */
 }
 
 .interactive-picture:hover .hidden-image {
