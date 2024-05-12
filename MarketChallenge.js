@@ -54,3 +54,11 @@ function checkAnswer() {
 function resetInput() {
     document.getElementById("fname").value = "";
 }
+
+document.querySelector('.interactive-picture').addEventListener('focusin', function() {
+    this.classList.add('hover');
+});
+
+document.querySelector('.interactive-picture').addEventListener('focusout', function() {
+    this.classList.remove('hover');
+});
