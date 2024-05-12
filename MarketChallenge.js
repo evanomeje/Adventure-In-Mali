@@ -11,9 +11,14 @@ class MarketChallenge {
       
         this.collection.forEach(item => {
             const textBox = document.createElement("input");
-            textBox.type = "custom-textbox";
+            textBox.type = "custom-textbox ";
             textBox.value = `* ${item}`;
             textBox.classList.add("custom-textbox");
+            if (this.answerKey.includes(item)) {
+                textBox.classList.add("custom-textbox-green");
+            } else {
+                textBox.classList.add("custom-textbox-red");
+            }
             textBox.readOnly = true; 
             collectionText.appendChild(textBox);
             collectionText.appendChild(document.createElement("br")); 
@@ -31,6 +36,8 @@ class MarketChallenge {
             }
         } else {
             alert("Incorrect! That's not part of the mask.");
+            this.collection.push(userAnswer);
+            this.display();
         }
     }
 }
