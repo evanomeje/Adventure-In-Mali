@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adventure's in Mali - Puzzle Round</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Jacquard+12+Charted&family=Jacquard+24&family=Jersey+10+Charted&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <h1>Adventures in Mali</h1>
+
+    <div id="market-challenge-game-display" class="market-challenge-game-display">
+        <div id="game-box" class="game-box">
+            <div id="market-challenge-instruction" class="market-challenge-instruction">
+                <p>Objective: Decode the script.</p>
+            </div>
+        </div>
+        <div id="show-collection" class="show-collection">
+            <div id="collection-text" class="collection-text"></div>
+        </div>
+    </div>
+
+    <form id="PuzzleGame" action="index.html" method="get">
+        <div class="tracking-pad">
+            <label for="fname">Enter:</label>
+            <input type="text" id="fname" name="fname" placeholder="*" required>
+        </div>
+        <div id="options-container"></div>
+        <button type="button" class="Yes_Button" onclick="checkAnswer()"><big>*</big></button>
+        <button type="button" class="No_Button" onclick="resetInput()"><big>*</big></button>
+    </form>
+
+    
+    <script src="N'koScript.js"></script>
+
+    
+    <script>
+       
+        const nkogame = new NkoScript([12, 34, 56, 67, 90, -1]);
+
+        nkogame.displayDictionary();
+        nkogame.displayNextQuestion();
+
+        function checkAnswer() {
+            const userAnswer = document.getElementById("fname").value; 
+            nkogame.checkAnswer(userAnswer);
+        }
+
+        function resetInput() {
+            document.getElementById("fname").value = "";
+        }
+    </script>
+</body>
+</html>
