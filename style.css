@@ -299,6 +299,8 @@ questionnaire section */
 
 
 
+
+
 .show-collection {
     height: 895px;
     width: 330px;
@@ -405,9 +407,9 @@ font-family: 'outfit';
 }
 
 .sketchfab-embed-wrapper .text {
-    position: absolute; /* Position the paragraph absolutely */
+    position: relative; /* Position the paragraph absolutely */
     bottom: 67; /* Adjust the vertical position */
-    left: -40px; /* Adjust the horizontal position */
+    right: 320px; /* Adjust the horizontal position */
     font-size: 25px;
 }
 
@@ -417,7 +419,7 @@ font-family: 'outfit';
     margin-bottom: 20px; /* Adjust the space between objects */
     display: flex;
     align-items: center;
-    left: 60px;
+    left: 75px;
 }
 
 .sketchfab-hausa-wrapper .text {
@@ -428,18 +430,18 @@ font-family: 'outfit';
 }
 
 .sketchfab-bamum-wrapper {
-    position: relative; /* Set the position to relative */
-    width: 200px; /* Adjust the width of each object */
-    margin-bottom: 20px; /* Adjust the space between objects */
+    position: relative; 
+    width: 200px; 
+    margin-bottom: 20px; 
     display: flex;
     align-items: center;
-    left: 0px;
+    left: 150px;
 }
 
 .sketchfab-bamum-wrapper .btext {
-    position: relative; /* Position the paragraph absolutely */
-    bottom: 67; /* Adjust the vertical position */
-    left: -315px; /* Adjust the horizontal position */
+    position: relative; 
+    bottom: 67; 
+    right: 245px; 
     font-size: 25px;
 }
 
@@ -456,7 +458,7 @@ font-family: 'outfit';
   /* Customize the thumb (the draggable part of the scrollbar) */
   ::-webkit-scrollbar-thumb {
     background-color: #000; /* Color of the scrollbar thumb */
-    border: #000 solid;
+    border: #f2c94c solid;
   }
   
   /* Customize the thumb on hover */
@@ -483,8 +485,7 @@ font-family: 'outfit';
 
 .MYes_Button:hover {
     background-color: #8dc14d;
-    position: relative;
-    left: 80px;
+    
 }
 
 .MNo_Button {
