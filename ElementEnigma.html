@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adventure's in Mali - Puzzle Round</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Jacquard+12+Charted&family=Jacquard+24&family=Jersey+10+Charted&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        .element {
+            display: inline-block;
+            margin: 10px;
+            text-align: center;
+            font-family:  'Press Start 2P';
+            position: relative;
+            border: none;
+        }
+        .element img {
+            width: 100px;
+            height: 100px;
+            cursor: grab;
+            text-align: left;
+        }
+        .element-container {
+            position: relative;
+            width: 715px;
+            height: 100%;
+            border: 4px solid;
+            display: none; /* Initially hidden */
+        }
+        .game-text {
+            padding-left: 2px;
+            border: 4px solid;
+            width: 715px;
+            height: 260px;
+            font-family: 'outfit';
+            font-weight: bold;
+            font-size: 20px; /* Adjust font size */
+            white-space: pre-line;
+            text-align: left;
+            overflow: hidden;
+            text-decoration: dotted;
+        }
+
+        .Alchemy-instruction {
+            border: 4px solid;
+            font-weight: bold;
+            width: 715px;
+            height: 30px;
+            font-family: 'Press Start 2P';
+            font-size: larger;
+            text-align: center;
+            margin: 0px;
+            padding-top: 10px;
+            display: none; /* Initially hidden */
+        }
+
+        #uMade {
+            font-size: large;
+            font-weight: bold;
+            font-family: 'Press Start 2P';
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 10px;
+            background-color: black;
+            animation: blink 0.7s steps(2, start) infinite;
+            vertical-align: bottom;
+        }
+        @keyframes blink {
+            0% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>*Adventure's In Mali*</h1>
+    <div class="game-text" id="gameText"></div>
+    <div class="Alchemy-instruction" id="AlchemyInst">Objective: Combine the elements.</div>
+    <div class="element-container" id="elementContainer"> created elements: </div>
+    <p id="uMade"></p>
+    <p id="dall"></p>
+
+    <script>
+        var gameText = `In the land where Mansa Musa's footsteps echo,
+To find the Golden Scepter, the elements must flow.
+Earth and fire dance so bright,
+Lava's glow brings forth a guiding light.
+In water's touch, the flames do cool,
+A transformation starts, breaking the rule.
+Obsidian forms, a path is clear,
+Golden Scepter's secret drawing near.
+Combine the elements, simple and true,
+To unlock the power, reveal the view...`;
+
+        var gameTextElement = document.getElementById("gameText");
+        var alchemyInstruction = document.getElementById("AlchemyInst");
+        var elementContainer = document.getElementById("elementContainer");
+        var index = 0;
+
+        // Add a cursor to the game text element
+        var cursor = document.createElement("span");
+        cursor.className = "cursor";
+        gameTextElement.appendChild(cursor);
+
+        // Sound effect
+        var audio = new Audio('typewriter-key.mp3'); // Ensure you have the audio file
+
+        function typeWriter() {
+            if (index < gameText.length) {
+                if (gameText.charAt(index) !== ' ') {
+                    audio.play(); // Play sound only for non-space characters
+                }
+                gameTextElement.insertBefore(document.createTextNode(gameText.charAt(index)), cursor);
+                index++;
+                var speed = 20 + Math.random() * 20; // Random speed between 50ms and 100ms
+                setTimeout(typeWriter, speed);
+            } else {
+                cursor.style.display = "none"; // Hide cursor after typing is done
+                alchemyInstruction.style.display = "block"; // Show instruction
+                elementContainer.style.display = "block"; // Show element container
+            }
+        }
+
+        window.onload = function() {
+            typeWriter(); // Start typing the game text
+        }
+
+        var elements = ["earth", "air", "fire", "water"];
+        var el1 = ["air", "air", "earth"];
+        var el2 = ["earth", "air", "earth"];
+        var make = ["dust", "air", "land"];
+        el1[3] = "fire"; el2[3] = "air"; make[3] = "smoke";
+        el1[4] = "water"; el2[4] = "earth"; make[4] = "mud";
+        el1[5] = "earth"; el2[5] = "air"; make[5] = "dust";
+        el1[6] = "fire"; el2[6] = "water"; make[6] = "steam";
+        el1[7] = "earth"; el2[7] = "fire"; make[7] = "lava";
+        el1[8] = "lava"; el2[8] = "water"; make[8] = "obsidian";
+        el1[9] = "lava"; el2[9] = "air"; make[9] = "stone";
+        el1[10] = "mud"; el2[10] = "fire"; make[10] = "clay-brick";
+        el1[11] = "clay-brick"; el2[11] = "clay-brick"; make[11] = "sahel architecture";
+        el1[12] = "steam"; el2[12] = "air"; make[12] = "cloud";
+        el1[13] = "lava"; el2[13] = "earth"; make[13] = "volcano";
+        el1[14] = "air"; el2[14] = "air"; make[14] = "earth";
+
+        var code = elements.length;
+        var newcomers = [];
+
+        function displayElements() {
+            var elementContainer = document.getElementById("elementContainer");
+            elementContainer.innerHTML = "";
+            elements.sort().forEach(function(element) {
+                var elemDiv = document.createElement("div");
+                elemDiv.className = "element";
+                elemDiv.innerHTML = `<img src="${element}.png" alt="${element}" draggable="true"><br>${element}`;
+                elementContainer.appendChild(elemDiv);
+                makeDraggable(elemDiv.querySelector('img'));
+            });
+        }
+
+        function makeDraggable(img) {
+            img.onmousedown = function(event) {
+                let shiftX = event.clientX - img.getBoundingClientRect().left;
+                let shiftY = event.clientY - img.getBoundingClientRect().top;
+
+                img.style.position = 'absolute';
+                img.style.zIndex = 1000;
+                img.style.width = '150px';
+                img.style.height = '150px';
+                document.body.append(img);
+
+                moveAt(event.pageX, event.pageY);
+
+                function moveAt(pageX, pageY) {
+                    img.style.left = pageX - shiftX + 'px';
+                    img.style.top = pageY - shiftY + 'px';
+                }
+
+                function onMouseMove(event) {
+                    moveAt(event.pageX, event.pageY);
+                }
+
+                document.addEventListener('mousemove', onMouseMove);
+
+                img.onmouseup = function() {
+                    document.removeEventListener('mousemove', onMouseMove);
+                    img.onmouseup = null;
+                    checkCollision(img);
+                };
+
+                img.ondragstart = function() {
+                    return false;
+                };
+            };
+
+            img.ondragstart = function() {
+                return false;
+            };
+        }
+
+        function allowDrop(event) {
+            event.preventDefault();
+        }
+        function drag(event) {
+            event.dataTransfer.setData("text", event.target.alt);
+        }
+
+        function combineElements(elem1, elem2) {
+            code = elements.length;
+            for (var i = 0; i < el1.length; i++) {
+                if (elements.indexOf(make[i]) === -1 && elements.indexOf(elem1) >= 0 && elements.indexOf(elem2) >= 0 && ((elem1 === el1[i] && elem2 === el2[i]) || (elem1 === el2[i] && elem2 === el1[i]))) {
+                    elements.push(make[i]);
+                    newcomers.push(make[i]);
+                }
+            }
+            displayElements();
+            
+            if (newcomers.length !== 0) {
+                document.getElementById("uMade").innerHTML = ("You made " + newcomers.join(", "));
+                newcomers = [];
+            } else {
+                document.getElementById("uMade").innerHTML = ("You made nothing");
+            }
+        }
+
+        var all = [];
+        for (var i = 0; i < make.length; i++) {
+            if (all.indexOf(make[i]) === -1) {
+                all.push(make[i]);
+            }
+        }
+        
+
+        function checkCollision(img) {
+            var draggableImages = document.querySelectorAll('img');
+            var imgRect = img.getBoundingClientRect();
+
+            draggableImages.forEach(function(otherImg) {
+                if (otherImg !== img) {
+                    var otherImgRect = otherImg.getBoundingClientRect();
+
+                    if (imgRect.left < otherImgRect.right &&
+                        imgRect.right > otherImgRect.left &&
+                        imgRect.top < otherImgRect.bottom &&
+                        imgRect.bottom > otherImgRect.top) {
+                        combineElements(img.alt, otherImg.alt);
+                    }
+                }
+            });
+        }
+
+        window.onload = function() {
+            typeWriter(); 
+            displayElements();
+        }
+    </script>
+</body>
+</html>

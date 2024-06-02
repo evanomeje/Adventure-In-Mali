@@ -7,21 +7,114 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Jacquard+12+Charted&family=Jacquard+24&family=Jersey+10+Charted&family=Press+Start+2P&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        .small-box {
+          display: inline-block;
+            width: 150px;
+            height: 150px;
+            border: 4px solid black;
+            background-color: #f2c94c;
+            margin: 5px;
+            display: inline-block;
+            position: relative; /* Add relative positioning */
+            left: 10px;
+            top: 30px;
+            font-size: 50px;
+            text-align: center;   
+        }
+
+        .small-box .text-content {
+    position: absolute; /* Position the text relative to the box */
+    bottom: 45px; /* Adjust the position of the text vertically */
+    left: 52px;  /* Adjust the position of the text horizontally */
+}
+       
+
+        .small-box .corner-asterisk {
+          font-family: 'outfit';
+            position: absolute; /* Position the asterisk absolutely */
+            top: 5px; /* Adjust the position */
+            left: 5px; /* Adjust the position */
+            font-size: 50px; /* Adjust the size */
+            color: black; /* Adjust the color */
+        }
+
+        .correct {
+          background-color: #8dc14d;
+            color: black;
+            border: solid 4px;
+            width: 295px;
+            font-family: 'outfit'
+            
+            
+        }
+
+        .incorrect {
+          background-color: #d65c5c;
+            color: black;
+            border: solid 4px;
+            width: 295px;
+            font-family: 'outfit'
+        }
+
+    </style>
 </head>
 <body>
     <h1>Adventures in Mali</h1>
-
     <div id="market-challenge-game-display" class="market-challenge-game-display">
-        <div id="game-box" class="game-box">
+        <div id="Ngame-box" class="Ngame-box">
             <div id="market-challenge-instruction" class="market-challenge-instruction">
-                <p>Objective: Decode the script.</p>
+                <p> Objective: Decode the N'KO script.</p>
             </div>
+    
+            <div class="container">
+                <div class="small-box" data-meaning="73" data-unicode="&#x07C3;&#x07C7;">
+                    <span class="corner-asterisk">*</span>
+                    <span class="text-content">&#x07C3;&#x07C7;</span>
+                </div>
+                <div class="small-box" data-meaning="45" data-unicode="&#x07C5;&#x07C4;">
+                    <span class="corner-asterisk">*</span>
+                    <span class="text-content">&#x07C5;&#x07C4;</span>
+                </div>
+                <div class="small-box" data-meaning="91;" data-unicode="&#x7C1;&#x7C9;">
+                    <span class="corner-asterisk">*</span>
+                    <span class="text-content">&#x7C1;&#x7C9;</span>
+                </div>
+                <div class="small-box" data-meaning="6" data-unicode="&#x7C6;">
+                    <span class="corner-asterisk">*</span>
+                    <span class="text-content">&#x7C6;</span>
+                </div>
+                <div class="small-box" data-meaning="88" data-unicode="&#x7C8;&#x7C8;">
+                    <span class="corner-asterisk">*</span>
+                    <span class="text-content">&#x7C8;&#x7C8;</span>
+                </div>
+                <div class="small-box" data-meaning="27" data-unicode="&#x7C7;&#x7C2;">
+                    <span class="corner-asterisk">*</span>
+                    <span class="text-content">&#x7C7;&#x7C2;</span>
+                </div>
+                <div class="small-box" data-meaning="54" data-unicode="&#x7C4;&#x7C5;">
+                    <span class="corner-asterisk">*</span>
+                    <span class="text-content">&#x7C4;&#x7C5;</span>
+                </div>
+                <div class="small-box" data-meaning="99" data-unicode="&#x7C9;&#x7C9;">
+                    <span class="corner-asterisk">*</span>
+                    <span class="text-content">&#x7C9;&#x7C9;</span>
+                </div>
+                <div class="small-box" data-meaning="32" data-unicode="&#x7C2;&#x7C3;">
+                    <span class="corner-asterisk">*</span>
+                    <span class="text-content">&#x7C2;&#x7C3;</span>
+                </div>
+                <div class="small-box" data-meaning="60" data-unicode="&#x7C0;&#x7C6;">
+                    <span class="corner-asterisk">*</span>
+                    <span class="text-content">&#x7C0;&#x7C6;</span>
+                </div>
+            </div>
+            
         </div>
         <div id="show-collection" class="show-collection">
             <div id="collection-text" class="collection-text"></div>
         </div>
     </div>
-
     <form id="PuzzleGame" action="index.html" method="get">
         <div class="tracking-pad">
             <label for="fname">Enter:</label>
@@ -31,17 +124,14 @@
         <button type="button" class="Yes_Button" onclick="checkAnswer()"><big>*</big></button>
         <button type="button" class="No_Button" onclick="resetInput()"><big>*</big></button>
     </form>
-
-    
     <script src="N'koScript.js"></script>
-
-    
     <script>
-       
         const nkogame = new NkoScript([12, 34, 56, 67, 90, -1]);
 
-        nkogame.displayDictionary();
+        window.onload = function () {
+          //nkogame.displayDictionary();
         nkogame.displayNextQuestion();
+        }
 
         function checkAnswer() {
             const userAnswer = document.getElementById("fname").value; 
@@ -51,6 +141,7 @@
         function resetInput() {
             document.getElementById("fname").value = "";
         }
+        document.getElementById("text-content").value = "\u07C3";
     </script>
 </body>
 </html>
