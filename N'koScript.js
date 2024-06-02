@@ -15,7 +15,7 @@ class NkoScript {
             htmlContent += `<p>N'KO Script: ${key}\t\tValue: ${dictionary[key]}</p>`;
         }
 
-        const gameBox = document.getElementById('game-box');
+        const gameBox = document.getElementById('Ngame-box'); // Corrected ID
         gameBox.innerHTML += htmlContent; // Append to existing content
     }
 
@@ -24,28 +24,27 @@ class NkoScript {
             "\u07c3 + \u07c9 = ", "\u07c1 - \u07c5 = ", "\u07c2 * \u07c6 = ",
             "\u07c8 + \u07c8 = ", "\u07c7 - \u07c7 = ", "\u07c8\u07c9 + \u07c7 = "
         ];
-    
+
         const collectionText = document.getElementById('collection-text');
         const questionBox = document.createElement('div');
-        questionBox.classList.add('question-box'); // Add a CSS class to style each question box
+        questionBox.classList.add('Nquestion-box'); // Add a CSS class to style each question box
         questionBox.innerHTML = `<p>*${questions[this.currentQuestionIndex]}</p>`;
         if (collectionText.firstChild) {
             collectionText.insertBefore(questionBox, collectionText.firstChild);
         } else {
             collectionText.appendChild(questionBox);
         }
+        this.currentQuestionBox = questionBox; // Store the current question box
     }
-    
 
     checkAnswer(userAnswer) {
         const correctAnswer = this.answerKey[this.currentQuestionIndex];
         const isCorrect = parseInt(userAnswer) === correctAnswer;
 
-        const collectionText = document.getElementById('collection-text');
         if (isCorrect) {
-            collectionText.innerHTML += "<p>Correct!</p>";
+            this.currentQuestionBox.classList.add('correct'); // Add correct class
         } else {
-            collectionText.innerHTML += "<p>Incorrect. Try again!</p>";
+            this.currentQuestionBox.classList.add('incorrect'); // Add incorrect class
         }
 
         if (this.currentQuestionIndex < this.answerKey.length - 1) {
@@ -57,14 +56,27 @@ class NkoScript {
     }
 
     displayScore() {
-        let correct = 0;
-        for (let i = 0; i < this.answerKey.length; i++) {
-            if (this.answerKey[i] === parseInt(this.vector_input[i])) {
-                correct++;
-            }
-        }
-        const score = correct * 10;
         const collectionText = document.getElementById('collection-text');
-        collectionText.innerHTML += `<p><br>Your score: ${score}</p>`;
+        collectionText.innerHTML += "<p><br>You've completed all questions!</p>";
     }
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    const boxes = document.querySelectorAll('.small-box');
+
+    boxes.forEach(box => {
+        box.addEventListener('click', function() {
+            const textContent = box.querySelector('.text-content');
+            const meaning = box.getAttribute('data-meaning');
+            
+            if (textContent.innerHTML === meaning) {
+                // If the content is currently the meaning, switch to the Unicode symbol
+                textContent.innerHTML = box.dataset.unicode;
+            } else {
+                // If the content is not the meaning, switch to the meaning
+                textContent.innerHTML = meaning;
+            }
+        });
+    });
+});
+

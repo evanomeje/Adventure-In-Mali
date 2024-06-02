@@ -9,112 +9,54 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
     <style>
         .small-box {
-          display: inline-block;
+            display: inline-block;
             width: 150px;
             height: 150px;
             border: 4px solid black;
             background-color: #f2c94c;
             margin: 5px;
-            display: inline-block;
-            position: relative; /* Add relative positioning */
+            position: relative;
             left: 10px;
             top: 30px;
             font-size: 50px;
-            text-align: center;   
+            text-align: center;
         }
 
         .small-box .text-content {
-    position: absolute; /* Position the text relative to the box */
-    bottom: 45px; /* Adjust the position of the text vertically */
-    left: 52px;  /* Adjust the position of the text horizontally */
-}
-       
+            position: absolute;
+            bottom: 45px;
+            left: 52px;
+        }
 
         .small-box .corner-asterisk {
-          font-family: 'outfit';
-            position: absolute; /* Position the asterisk absolutely */
-            top: 5px; /* Adjust the position */
-            left: 5px; /* Adjust the position */
-            font-size: 50px; /* Adjust the size */
-            color: black; /* Adjust the color */
+            font-family: 'Outfit';
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            font-size: 50px;
+            color: black;
         }
 
         .correct {
-          background-color: #8dc14d;
+            background-color: #8dc14d;
             color: black;
             border: solid 4px;
             width: 295px;
-            font-family: 'outfit'
-            
-            
+            font-family: 'Outfit';
         }
 
         .incorrect {
-          background-color: #d65c5c;
+            background-color: #d65c5c;
             color: black;
             border: solid 4px;
             width: 295px;
-            font-family: 'outfit'
+            font-family: 'Outfit';
         }
-
     </style>
 </head>
 <body>
     <h1>Adventures in Mali</h1>
-    <div id="market-challenge-game-display" class="market-challenge-game-display">
-        <div id="Ngame-box" class="Ngame-box">
-            <div id="market-challenge-instruction" class="market-challenge-instruction">
-                <p> Objective: Decode the N'KO script.</p>
-            </div>
-    
-            <div class="container">
-                <div class="small-box" data-meaning="73" data-unicode="&#x07C3;&#x07C7;">
-                    <span class="corner-asterisk">*</span>
-                    <span class="text-content">&#x07C3;&#x07C7;</span>
-                </div>
-                <div class="small-box" data-meaning="45" data-unicode="&#x07C5;&#x07C4;">
-                    <span class="corner-asterisk">*</span>
-                    <span class="text-content">&#x07C5;&#x07C4;</span>
-                </div>
-                <div class="small-box" data-meaning="91;" data-unicode="&#x7C1;&#x7C9;">
-                    <span class="corner-asterisk">*</span>
-                    <span class="text-content">&#x7C1;&#x7C9;</span>
-                </div>
-                <div class="small-box" data-meaning="6" data-unicode="&#x7C6;">
-                    <span class="corner-asterisk">*</span>
-                    <span class="text-content">&#x7C6;</span>
-                </div>
-                <div class="small-box" data-meaning="88" data-unicode="&#x7C8;&#x7C8;">
-                    <span class="corner-asterisk">*</span>
-                    <span class="text-content">&#x7C8;&#x7C8;</span>
-                </div>
-                <div class="small-box" data-meaning="27" data-unicode="&#x7C7;&#x7C2;">
-                    <span class="corner-asterisk">*</span>
-                    <span class="text-content">&#x7C7;&#x7C2;</span>
-                </div>
-                <div class="small-box" data-meaning="54" data-unicode="&#x7C4;&#x7C5;">
-                    <span class="corner-asterisk">*</span>
-                    <span class="text-content">&#x7C4;&#x7C5;</span>
-                </div>
-                <div class="small-box" data-meaning="99" data-unicode="&#x7C9;&#x7C9;">
-                    <span class="corner-asterisk">*</span>
-                    <span class="text-content">&#x7C9;&#x7C9;</span>
-                </div>
-                <div class="small-box" data-meaning="32" data-unicode="&#x7C2;&#x7C3;">
-                    <span class="corner-asterisk">*</span>
-                    <span class="text-content">&#x7C2;&#x7C3;</span>
-                </div>
-                <div class="small-box" data-meaning="60" data-unicode="&#x7C0;&#x7C6;">
-                    <span class="corner-asterisk">*</span>
-                    <span class="text-content">&#x7C0;&#x7C6;</span>
-                </div>
-            </div>
-            
-        </div>
-        <div id="show-collection" class="show-collection">
-            <div id="collection-text" class="collection-text"></div>
-        </div>
-    </div>
+    <div id="market-challenge-game-display" class="market-challenge-game-display"></div>
     <form id="PuzzleGame" action="index.html" method="get">
         <div class="tracking-pad">
             <label for="fname">Enter:</label>
@@ -126,15 +68,88 @@
     </form>
     <script src="N'koScript.js"></script>
     <script>
+      
+        const mainDiv = document.createElement('div');
+        mainDiv.id = 'market-challenge-game-display';
+        mainDiv.className = 'market-challenge-game-display';
+
+        const gameBox = document.createElement('div');
+        gameBox.id = 'Ngame-box';
+        gameBox.className = 'Ngame-box';
+
+        const instructionDiv = document.createElement('div');
+        instructionDiv.id = 'market-challenge-instruction';
+        instructionDiv.className = 'market-challenge-instruction';
+
+        const instructionText = document.createElement('p');
+        instructionText.textContent = "Objective: Decode the N'KO script.";
+        instructionDiv.appendChild(instructionText);
+
+        gameBox.appendChild(instructionDiv);
+
+        const containerDiv = document.createElement('div');
+        containerDiv.className = 'container';
+
+        const smallBoxData = [
+            { meaning: "73", unicode: "&#x07C3;&#x07C7;" },
+            { meaning: "45", unicode: "&#x07C5;&#x07C4;" },
+            { meaning: "91", unicode: "&#x7C1;&#x7C9;" },
+            { meaning: "6", unicode: "&#x7C6;" },
+            { meaning: "88", unicode: "&#x7C8;&#x7C8;" },
+            { meaning: "27", unicode: "&#x7C7;&#x7C2;" },
+            { meaning: "54", unicode: "&#x7C4;&#x7C5;" },
+            { meaning: "99", unicode: "&#x7C9;&#x7C9;" },
+            { meaning: "32", unicode: "&#x7C2;&#x7C3;" },
+            { meaning: "60", unicode: "&#x7C0;&#x7C6;" },
+        ];
+
+        smallBoxData.forEach(data => {
+            const smallBox = document.createElement('div');
+            smallBox.className = 'small-box';
+            smallBox.dataset.meaning = data.meaning;
+            smallBox.dataset.unicode = data.unicode;
+
+            const cornerAsterisk = document.createElement('span');
+            cornerAsterisk.className = 'corner-asterisk';
+            cornerAsterisk.textContent = '*';
+            smallBox.appendChild(cornerAsterisk);
+
+            const textContent = document.createElement('span');
+            textContent.className = 'text-content';
+            textContent.innerHTML = data.unicode;
+            smallBox.appendChild(textContent);
+
+            containerDiv.appendChild(smallBox);
+        });
+
+        gameBox.appendChild(containerDiv);
+
+        mainDiv.appendChild(gameBox);
+
+        const showCollectionDiv = document.createElement('div');
+        showCollectionDiv.id = 'show-collection';
+        showCollectionDiv.className = 'show-collection';
+
+        const collectionTextDiv = document.createElement('div');
+        collectionTextDiv.id = 'collection-text';
+        collectionTextDiv.className = 'collection-text';
+
+        showCollectionDiv.appendChild(collectionTextDiv);
+
+        mainDiv.appendChild(showCollectionDiv);
+
+        document.getElementById('market-challenge-game-display').appendChild(mainDiv);
+
+       
         const nkogame = new NkoScript([12, 34, 56, 67, 90, -1]);
 
         window.onload = function () {
-          //nkogame.displayDictionary();
-        nkogame.displayNextQuestion();
-        }
+            // nkogame.displayDictionary();
+            nkogame.displayNextQuestion();
+        };
 
         function checkAnswer() {
-            const userAnswer = document.getElementById("fname").value; 
+            const userAnswer = document.getElementById("fname").value;
             nkogame.checkAnswer(userAnswer);
         }
 
