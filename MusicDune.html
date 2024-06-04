@@ -7,12 +7,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <style>
         body {
-            background: #e9e9e9; !important;
+            background: #e9e9e9 !important;
             font-family: 'Press Start 2P';
             text-align: center;
             color: black;
             font-size: larger;
-         
         }
 
         .card {
@@ -26,8 +25,6 @@
             position: relative;
         }
 
-        
-
         .instrument-img {
             width: 80%;
             height: 80%;
@@ -37,26 +34,31 @@
             transform: translate(-50%, -50%);
         }
 
+        .instrument-name {
+            position: absolute;
+            bottom: 10px;
+            width: 100%;
+            text-align: center;
+            font-size: 1.5em;
+            color: #000;
+        }
+
         .left {
             float: left;
             margin-left: 10%;
             border: 4px solid black;
-           
         }
 
         .middle {
             display: inline-block;
             margin: 0 auto;
             border: 4px solid black;
-            
         }
 
         .right {
             float: right;
             margin-right: 10%;
             border: 4px solid black;
-           
-            
         }
 
         .button-container {
@@ -73,15 +75,13 @@
             font-family: 'Press Start 2P';
             font-size: 25px;
             text-align: center;
-            margin-top: 250px; 
+            margin-top: 250px;
             transition: background-color 0.1s ease;
         }
 
         .button-container button:hover {
-    /* Remove hover effect */
-    background-color: #f2c94c;
-}
-
+            background-color: #f2c94c;
+        }
     </style>
 </head>
 <body>
@@ -100,25 +100,25 @@
             }
 
             generateSequence(round) {
-    const manualDirections = [
-        ["left", "middle", "right"],
-        ["right", "middle", "left"],
-        ["middle", "left", "right"],
-        ["left", "right", "middle"]
-    ];
-    const directions = manualDirections[round];
-    this.instruments = this.instruments.sort(() => 0.5 - Math.random());
+                const manualDirections = [
+                    ["left", "middle", "right"],
+                    ["right", "middle", "left"],
+                    ["middle", "left", "right"],
+                    ["left", "right", "middle"]
+                ];
+                const directions = manualDirections[round];
+                this.instruments = this.instruments.sort(() => 0.5 - Math.random());
 
-    this.musicSequence = [];
-    this.positions = {};
+                this.musicSequence = [];
+                this.positions = {};
 
-    for (let i = 0; i < 3 && i < this.instruments.length; ++i) {
-        this.musicSequence.push(this.instruments[i]);
-        this.positions[this.instruments[i]] = directions[i];
-    }
+                for (let i = 0; i < 3 && i < this.instruments.length; ++i) {
+                    this.musicSequence.push(this.instruments[i]);
+                    this.positions[this.instruments[i]] = directions[i];
+                }
 
-    console.log("Positions:", this.positions); // Add this line to log the positions object
-}
+                console.log("Positions:", this.positions);
+            }
 
             async displaySequence() {
                 const gameContainer = document.getElementById("gameContainer");
@@ -135,6 +135,12 @@
                     img.className = "instrument-img";
                     card.appendChild(img);
 
+                    // Create a div element to hold the instrument name
+                    const instrumentName = document.createElement("div");
+                    instrumentName.textContent = instrument; // Set the text content to the instrument name
+                    instrumentName.className = "instrument-name"; // Add the class to the instrument name element
+                    card.appendChild(instrumentName); // Append the instrument name element to the card
+
                     gameContainer.appendChild(card);
 
                     await new Promise(resolve => setTimeout(resolve, 1000));
@@ -143,20 +149,20 @@
             }
 
             showButtons() {
-    const buttonsContainer = document.createElement("div");
-    buttonsContainer.className = "button-container";
+                const buttonsContainer = document.createElement("div");
+                buttonsContainer.className = "button-container";
 
-    const directions = ["left", "middle", "right"]; // Always in the order: left, middle, right
+                const directions = ["left", "middle", "right"]; // Always in the order: left, middle, right
 
-    for (let i = 0; i < directions.length; ++i) {
-        const button = document.createElement("button");
-        button.textContent = directions[i];
-        button.onclick = () => this.handleButtonClick(directions[i]);
-        buttonsContainer.appendChild(button);
-    }
+                for (let i = 0; i < directions.length; ++i) {
+                    const button = document.createElement("button");
+                    button.textContent = directions[i];
+                    button.onclick = () => this.handleButtonClick(directions[i]);
+                    buttonsContainer.appendChild(button);
+                }
 
-    document.getElementById("gameContainer").appendChild(buttonsContainer);
-}
+                document.getElementById("gameContainer").appendChild(buttonsContainer);
+            }
 
             async playRound(round) {
                 this.generateSequence(round);
@@ -167,50 +173,48 @@
             async play() {
                 await this.playRound(this.currentRound);
             }
-            
+
             handleButtonClick(answer) {
-    const button = event.target;
-    const expectedSequences = [
-        ["left", "middle", "right"],
-        ["right", "middle", "left"],
-        ["middle", "left", "right"],
-        ["left", "right", "middle"]
-    ];
+                const button = event.target;
+                const expectedSequences = [
+                    ["left", "middle", "right"],
+                    ["right", "middle", "left"],
+                    ["middle", "left", "right"],
+                    ["left", "right", "middle"]
+                ];
 
-    const isCorrect = answer === expectedSequences[this.currentRound][this.inputIndex];
+                const isCorrect = answer === expectedSequences[this.currentRound][this.inputIndex];
 
-    if (isCorrect) {
-        this.score++; // Increment the score if the answer is correct
-        button.style.backgroundColor = 'green';
-    } else {
-        button.style.backgroundColor = 'red';
-    }
+                if (isCorrect) {
+                    this.score++; // Increment the score if the answer is correct
+                    button.style.backgroundColor = 'green';
+                } else {
+                    button.style.backgroundColor = 'red';
+                }
 
-    setTimeout(() => {
-        button.style.backgroundColor = ''; // Reset button color after a short delay
-        if (this.inputIndex === this.musicSequence.length - 1) {
-            if (this.currentRound < 3) {
-                this.currentRound++;
-                this.playRound(this.currentRound);
-            } else {
-                document.getElementById("gameContainer").innerHTML = `<h2>Final Score: ${this.score}</h2>`;
+                setTimeout(() => {
+                    button.style.backgroundColor = ''; // Reset button color after a short delay
+                    if (this.inputIndex === this.musicSequence.length - 1) {
+                        if (this.currentRound < 3) {
+                            this.currentRound++;
+                            this.playRound(this.currentRound);
+                        } else {
+                            document.getElementById("gameContainer").innerHTML = `<h2>Final Score: ${this.score}</h2>`;
+                        }
+                        this.inputIndex = 0; // Reset input index
+                        this.playerAnswers = []; // Reset player answers
+                        // Re-enable buttons for the next round after a short delay
+                        setTimeout(() => {
+                            const buttons = document.querySelectorAll('.button-container button');
+                            buttons.forEach(btn => {
+                                btn.disabled = false;
+                            });
+                        }, 1000);
+                    } else {
+                        this.inputIndex++;
+                    }
+                }, 1000);
             }
-            this.inputIndex = 0; // Reset input index
-            this.playerAnswers = []; // Reset player answers
-            // Re-enable buttons for the next round after a short delay
-            setTimeout(() => {
-                const buttons = document.querySelectorAll('.button-container button');
-                buttons.forEach(btn => {
-                    btn.disabled = false;
-                });
-            }, 1000);
-        } else {
-            this.inputIndex++;
-        }
-    }, 1000);
-}
-
-
         }
 
         const musicDuneGame = new MusicDune();
