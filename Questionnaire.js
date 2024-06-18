@@ -91,17 +91,17 @@ function resetInput() {
 // Function to check the user's answer
 function checkAnswer() {
     const userAnswer = document.getElementById("fname").value;
-    councilGriot.checkAnswer(userAnswer);
+    game1.checkAnswer(userAnswer);
+    window.location.href = "Drama2.html";
 }
 
 // Function for "Next" button
 function nextQuestion() {
-    councilGriot.nextQuestion();
+    game1.nextQuestion();
 }
 
 // Create an instance of the CouncilGriot class
-const councilGriot = new DjenneGate();
+const game1 = new DjenneGate();
 
 // Display initial question for CouncilGriot class
-councilGriot.displayQuestion();
-
+game1.displayQuestion();

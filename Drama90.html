@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+
+  <title>NPC Dialogue</title>
+  <style>
+    .avatar {
+      width: 150px;
+      height: 150px;
+      background-size: cover;
+      margin-right: 10px;
+      float: left;
+      border: 4px solid black;
+      display: none; /* Initially hide avatars */
+    }
+
+    .dialogue-container {
+      top: 100px;
+      margin: 10px;
+      position: relative; /* Ensure dialogue-container does not affect .art */
+    }
+
+    .dialogue-box {
+      font-family: 'Outfit', Arial, sans-serif;
+      font-size: 16px;
+      padding: 10px;
+      border: 4px solid #000000;
+      margin-bottom: 20px;
+      overflow: hidden;
+      display: none;
+      background-color: #f2c94c;
+      max-width: 800px; /* Adjusted width */
+      height: auto;
+      word-wrap: break-word; /* Allow word wrapping */
+    }
+
+    .dialogue-text {
+      white-space: pre-wrap; /* Preserve whitespace and allow wrapping */
+      overflow: hidden;
+      border-right: .15em solid black;
+      font-family: 'Outfit', Arial, sans-serif;
+      font-weight: bold;
+      font-size: 25px;
+    }
+
+    body {
+      background-color: #e9e9e9;
+    }
+
+    .art {
+      position: fixed;
+      top: 0; /* Adjust as necessary */
+      left: 0; /* Adjust as necessary */
+      z-index: -1; /* Ensure it's behind the dialogue boxes */
+    }
+
+    .name {
+      font-size: 45px;
+      font-weight: bold;
+    }
+
+    /* Customize the width of the scrollbar */
+    ::-webkit-scrollbar {
+      width: 25px; /* Width of the entire scrollbar */
+    }
+
+    /* Customize the track (the empty space within the scrollbar) */
+    ::-webkit-scrollbar-track {
+      background: #000; /* Color of the scrollbar track */
+    }
+
+    /* Customize the thumb (the draggable part of the scrollbar) */
+    ::-webkit-scrollbar-thumb {
+      background-color: #000; /* Color of the scrollbar thumb */
+      border: #f2c94c solid;
+    }
+
+    /* Customize the thumb on hover */
+    ::-webkit-scrollbar-thumb:hover {
+      background: #f2c94c ; /* Color of the scrollbar thumb on hover */
+    }
+  </style>
+</head>
+<body>
+  <div id="dialogue-container">
+    <div class="dialogue-box">
+      <div class="avatar guard-avatar" style="background-image: url('k.png')"></div>
+      <strong class="name">✧･ﾟ:* [Kofi]:</strong> <span class="dialogue-text"></span>
+    </div>
+
+    <div class="dialogue-box">
+      <div class="avatar guard-avatar" style="background-image: url('s.png')"></div>
+      <strong class="name">✧･ﾟ:* [Samba]:</strong> <span class="dialogue-text"></span>
+    </div>
+
+    <div class="dialogue-box">
+      <div class="avatar sadio-avatar" style="background-image: url('o.png')"></div>
+      <strong class="name">✧･ﾟ:* [Oumar]:</strong> <span class="dialogue-text"></span>
+    </div>
+
+    <div class="dialogue-box">
+      <div class="avatar guard-avatar" style="background-image: url('k.png')"></div>
+      <strong class="name">✧･ﾟ:* [Kofi]:</strong> <span class="dialogue-text"></span>
+    </div>
+
+    <div class="dialogue-box">
+      <div class="avatar guard-avatar" style="background-image: url('s.png')"></div>
+      <strong class="name">✧･ﾟ:* [Samba]:</strong> <span class="dialogue-text"></span>
+    </div>
+
+    <div class="dialogue-box">
+      <div class="avatar sadio-avatar" style="background-image: url('o.png')"></div>
+      <strong class="name">✧･ﾟ:* [Oumar]:</strong> <span class="dialogue-text"></span>
+    </div>
+
+    <div class="dialogue-box">
+      <div class="avatar guard-avatar" style="background-image: url('k.png')"></div>
+      <strong class="name">✧･ﾟ:* [Kofi]:</strong> <span class="dialogue-text"></span>
+    </div>
+
+    <div class="dialogue-box">
+      <div class="avatar guard-avatar" style="background-image: url('s.png')"></div>
+      <strong class="name">✧･ﾟ:* [Samba]:</strong> <span class="dialogue-text"></span>
+    </div>
+
+    <div class="dialogue-box">
+      <div class="avatar sadio-avatar" style="background-image: url('o.png')"></div>
+      <strong class="name">✧･ﾟ:* [Oumar]:</strong> <span class="dialogue-text"></span>
+    </div>
+
+    <div class="dialogue-box">
+      <div class="avatar guard-avatar" style="background-image: url('k.png')"></div>
+      <strong class="name">✧･ﾟ:* [Kofi]:</strong> <span class="dialogue-text"></span>
+    </div>
+
+    <div class="dialogue-box">
+      <div class="avatar guard-avatar" style="background-image: url('s.png')"></div>
+      <strong class="name">✧･ﾟ:* [Samba]:</strong> <span class="dialogue-text"></span>
+    </div>
+  </div>
+
+  <div class="art">
+    <img src="court3.png" width="1370" height="auto">
+  </div>
+
+  <script>
+    const dialogueTexts = [
+      "We must reflect on the grandeur of the Mali Empire, my brothers. It stands as a testament to the brilliance of our ancestors. *:･ﾟ✧",
+      "Indeed, my friend. The Mali Empire, under Sundiata Keita and his successors, embodied the epitome of West African civilization. *:･ﾟ✧",
+      "Ah, Sundiata Keita, the Lion King of Mali. His vision and leadership united our people.*:･ﾟ✧",
+      "And let us not forget Mansa Musa, whose Hajj pilgrimage to Mecca elevated Mali to unparalleled prominence.*:･ﾟ✧",
+      "Ah, Mansa Musa, a true exemplar of wealth and opulence. His generosity left an indelible mark on our history.*:･ﾟ✧",
+      "Indeed, his pilgrimage showcased Mali's prosperity and cultural richness to the world.*:･ﾟ✧",
+      "But despite Mali's glory, we cannot overlook the challenges it faced. Internal strife, external pressures, all testing the resilience of our people.:･ﾟ✧",
+      "True, my friend. The decline of the Mali Empire serves as a reminder of ever-changing tides of history.*:･ﾟ✧",
+      " Yet, the legacy of Mali endures, woven into the fabric of West African heritage. It inspires future generations to strive for greatness*:･ﾟ✧",
+      "As griots, it's our sacred duty to keep the flames of Mali's history burning bright, brothers.✧･ﾟ",
+      "Absolutely, Kofi. Through our songs and stories, we carry the weight of our civilization's legacy*:･ﾟ✧"
+    ];
+  
+    const dialogueBoxes = document.querySelectorAll('.dialogue-box');
+    const dialogueSpans = document.querySelectorAll('.dialogue-text');
+    const avatars = document.querySelectorAll('.avatar');
+    let index = 0;
+
+    function redirectToQuestionnaire() {
+      window.location.href = 'questionnaire2.html';
+    }
+  
+    function typeWriter(text, spanElement, dialogueBox) {
+      let charIndex = 0;
+      const typing = setInterval(() => {
+        if (charIndex < text.length) {
+          spanElement.textContent += text.charAt(charIndex);
+          charIndex++;
+        } else {
+          clearInterval(typing);
+          index++;
+          if (index < dialogueTexts.length) {
+            dialogueBoxes[index].style.display = 'block'; // Show dialogue box
+            avatars[index].style.display = 'block'; // Show avatar
+            scrollToLatestDialogue(); // Scroll to the latest dialogue
+            setTimeout(() => {
+              typeWriter(dialogueTexts[index], dialogueSpans[index], dialogueBoxes[index]);
+            }, 1000); // 1000ms delay between dialogues
+          } else {
+            // Redirect to the questionnaire when done
+            setTimeout(redirectToQuestionnaire, 1000); // Adjust delay as needed
+          }
+        }
+      }, 100);
+    }
+
+    function scrollToLatestDialogue() {
+      const latestDialogue = dialogueBoxes[index];
+      latestDialogue.scrollIntoView({ behavior: 'smooth', block: 'end' });
+    }
+  
+    // Initially show the first dialogue box and its avatar
+    dialogueBoxes[index].style.display = 'block';
+    avatars[index].style.display = 'block';
+    scrollToLatestDialogue(); // Ensure the initial dialogue is in view
+  
+    // Start typing the first dialogue
+    typeWriter(dialogueTexts[index], dialogueSpans[index], dialogueBoxes[index]);
+  </script>
+</body>
+</html>

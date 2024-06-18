@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+  <title>NPC Dialogue</title>
+  <style>
+   
+    
+
+    .art {
+      position: relative;
+      bottom: 150px;
+    }
+
+    .avatar {
+      width: 50px;
+      height: 50px;
+      background-size: cover;
+      margin-right: 10px;
+      float: left;
+      border: 4px solid black;
+      /* Initially hide avatars */
+    }
+
+    .dialouge-container {
+      top: 50px;
+      margin: 5px;
+    }
+
+    .dialogue-box {
+      font-family: Arial, sans-serif;
+      font-size: 15px;
+      padding: 10px;
+      border: 4px solid #000000;
+      margin-bottom: 20px;
+      overflow: hidden;
+      display: none; 
+      background-color: #f2c94c; 
+      width: 1209px;
+      position: absolute;
+      top: 80%;
+      z-index: 1000;
+      left: 15px;
+    }
+
+    .dialogue-text {
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: .15em solid black;
+      font-family: 'Outfit' ;
+      font-weight: bold;
+      font-size: 20px;
+    }
+
+    body {
+      background-color: #e9e9e9;
+      overflow-y: hidden ;
+    }
+
+    /* Slideshow styles */
+    .slideshow-container {
+      position: relative;
+      max-width: 620px; /* Adjust max-width as needed */
+      margin: auto;
+      align-items: right;
+    
+      
+    }
+
+    .slides {
+      display: none;
+      position: absolute;
+      width: 100%;
+      height: 450px;
+      transition: opacity 1s ease; /* Fade transition */
+      align-items: right;
+      border: 4px solid black;
+      left: 250px;
+      top: 25px;
+    }
+
+    .fade {
+      animation-name: fade;
+      animation-duration: 1s;
+    }
+
+    @keyframes fade {
+      from {
+        opacity: 0.4;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="dialogue-container">
+    <div class="dialogue-box">
+      <div class="avatar guard-avatar" style="background-image: url('sadio3.png')"></div>
+      <strong>SADIO:</strong> <span class="dialogue-text"></span>
+    </div>
+  </div>
+
+  <!-- Slideshow container -->
+  <div class="slideshow-container">
+    
+    <img class="slides fade" src="slideshow1.png" width="620" height="300">
+    <img class="slides fade" src="slideshow2.png" width="620" height="300">
+    <img class="slides fade" src="slideshow3.png" width="620" height="300">
+    <img class="slides fade" src="slideshow4.png" width="620" height="300">
+ 
+  </div>
+
+  <div class="art">
+    <img src="family.png" width="620" height="auto">
+  </div>
+
+  <div class="colonial-art">
+    <img src="mainsoldie8r2.png" width="620" height="auto">
+  </div>
+
+  <script>
+    // JavaScript code for the slideshow goes here
+    let slideIndex = 0;
+    showSlides();
+
+    function showSlides() {
+      let slides = document.getElementsByClassName("slides");
+      for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+      }
+      slideIndex++;
+      if (slideIndex > slides.length) { slideIndex = 1 }
+      slides[slideIndex - 1].style.display = "block";
+      setTimeout(showSlides, 2000); // Change image every 2 seconds
+    }
+  
+
+
+    const dialogueTexts = [
+      "The city is bustling with activity today. Traders from all corners of West-Africa have gathered here to exchange goods.\n",
+
+
+
+
+      
+    ];
+  
+    const dialogueBoxes = document.querySelectorAll('.dialogue-box');
+    const dialogueSpans = document.querySelectorAll('.dialogue-text');
+    const avatars = document.querySelectorAll('.avatar');
+    let index = 0;
+  
+    function typeWriter(text, spanElement, dialogueBox) {
+      let charIndex = 0;
+      const typing = setInterval(() => {
+        if (charIndex < text.length) {
+          spanElement.textContent += text.charAt(charIndex);
+          charIndex++;
+        } else {
+          clearInterval(typing);
+          index++;
+          if (index < dialogueTexts.length) {
+            dialogueBoxes[index].style.display = 'block'; // Show dialogue box
+            setTimeout(() => {
+              typeWriter(dialogueTexts[index], dialogueSpans[index], dialogueBoxes[index]);
+            }, 1000); // 1000ms delay between dialogues
+          }
+          window.location.href = "Drama3.html"
+        }
+      }, 100);
+    }
+  
+    // Initially show the first dialogue box and its avatar
+    dialogueBoxes[index].style.display = 'block';
+    avatars[index].style.display = 'block';
+  
+    // Start typing the first dialogue
+    typeWriter(dialogueTexts[index], dialogueSpans[index], dialogueBoxes[index]);
+  </script>
+  
+</body>
+</html>

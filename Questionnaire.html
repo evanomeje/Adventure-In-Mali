@@ -5,9 +5,102 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adventure's in Mali - Questionnaire Round</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+
+        .title {
+            position: relative;
+            font-weight: bold;
+            font-family: 'Press Start 2P';
+            top: 35px;
+            margin-bottom: 0px;
+        }
+        .colonial-art img {
+        
+            transform: scaleX(-1);
+            margin-left: -999px;
+            margin-top: -1170px;
+            overflow-x: hidden; 
+        }
+        #question-box {
+    font-family: Arial, sans-serif; /* Choose your desired font */
+    font-size: 25px; /* Adjust the font size */
+    font-weight: bold; /* Adjust the font weight */
+    color: black; /* Adjust the text color */
+    margin-bottom: 20px; /* Adjust spacing */
+    width:715px;
+    height: auto;
+    text-align: center;
+    border: 4px solid black; 
+    background-color: #f2c94c;
+    font-family: 'Outfit';
+    
+}
+
+.answer-box {
+    margin-bottom: 0px; /* Reduce the bottom margin */
+    border: 4px solid black;
+    font-family: 'Outfit';
+    font-size: 20px;
+    font-weight: bold;
+    
+}
+
+.tracking-pad {
+    z-index: 1000;
+    position: relative;
+}
+
+.tracking-pad input {
+    border: 4px solid black; /* Adjust the border size */
+    width: 55px;
+}
+
+
+.QYes_Button, .QNo_Button {
+    font-family: 'Press Start 2P';
+    border: 4px solid black;
+    padding: 10px;
+    font-size: 17px;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.QYes_Button {
+    top: -48px;
+    left: 180px;
+    color: #8dc14d;
+}
+
+.QYes_Button:hover {
+    background-color: #8dc14d;
+    
+}
+
+.QNo_Button {
+    top: -48px;
+    left: 190px;
+    color: #d65c5c;
+}
+.QNo_Button:hover {
+    background-color: #d65c5c;
+}
+
+
+
+    </style>
 </head>
+
+
 <body>
-    <h1>Adventures in Mali</h1>
+    <h1 class="title">*Adventure's in Mali*</h1>
 
     <div id="question-box" class="question-box"></div>
 
@@ -24,13 +117,16 @@
 
         <div id="options-container"></div>
 
-        <button type="button" class="Yes_Button" onclick="checkAnswer()"><big>*</big></button>
-        <button type="button" class="No_Button" onclick="resetInput()"><big>*</big></button>
+        <button type="button" class="QYes_Button" onclick="checkAnswer()"><big>*</big></button>
+        <button type="button" class="QNo_Button" onclick="resetInput()"><big>*</big></button>
 
-        <button type="button" class="next_button" onclick="nextQuestion()">NEXT</button>
-       
+        <div class="colonial-art"> <!-- Added the missing closing angle bracket `>` here -->
+            <img src="war.png" width="450" height="350"> <!-- Set the width and height directly here -->
+        </div>
     </form>
 
     <script src="Questionnaire.js"></script>
+    <script src="Questionnaire2.js"></script>
+
 </body>
 </html>

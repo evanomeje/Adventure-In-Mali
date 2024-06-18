@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+  <title>NPC Dialogue</title>
+  <style>
+
+.colonial-art {
+    position: fixed;
+    left: calc(50% + 50px); /* Adjust the positioning based on your layout */
+    top: 8px; /* Adjust the top position as needed */
+    border: 4px solid black;
+}
+
+    .avatar {
+      width: 50px;
+      height: 50px;
+      background-size: cover;
+      margin-right: 10px;
+      float: left;
+      
+      border: 4px solid black;
+      /* Initially hide avatars */
+    }
+
+    .dialogue-container {
+        position: absolute;
+    top: 150px; /* Adjust the top position as needed */
+    margin: 10px;
+}
+    .dialogue-box {
+      font-family: Arial, sans-serif;
+      font-size: 16px;
+      padding: 10px;
+      border: 4px solid #000000;
+      margin-bottom: 20px;
+      overflow: hidden;
+      display: none; 
+      background-color: #f2c94c;
+      width: 700px;
+    }
+
+ 
+
+    .dialogue-text {
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: .15em solid black;
+      font-family: 'Outfit' ;
+      font-weight: bold;
+      font-size: 20px;
+    }
+
+    body {
+    background-color: #e9e9e9;
+}
+
+.art-container {
+    position: fixed;
+    left: calc(50% - 310px); /* Adjust the positioning based on your layout */
+    bottom: 20px; /* Adjust the bottom position as needed */
+}
+
+.art {
+    margin-bottom: 10px; /* Adjust margin as needed */
+}
+  </style>
+</head>
+<body>
+  <div id="dialogue-container">
+    
+    <div class="dialogue-box">
+        <div class="avatar guard-avatar" style="background-image: url('soldier2.png')"></div>
+      <strong>GUARD1:</strong> <span class="dialogue-text"></span>
+    </div>
+
+    <div class="dialogue-box">
+        <div class="avatar guard-avatar" style="background-image: url('soldier3.png')"></div>
+      <strong>GUARD2:</strong> <span class="dialogue-text"></span>
+    </div>
+
+    <div class="dialogue-box">
+        <div class="avatar sadio-avatar" style="background-image: url('sadio2.png')"></div>
+      <strong>SADIO:</strong> <span class="dialogue-text"></span>
+    </div>
+
+    <div class="dialogue-box">
+        <div class="avatar guard-avatar" style="background-image: url('soldier2.png')"></div>
+      <strong>GUARD1:</strong> <span class="dialogue-text"></span>
+    </div>
+
+  </div>
+
+  <div class="colonial-art"> <!-- Added the missing closing angle bracket `>` here -->
+    <img src="mainsoldier2.png" width="620" height="392"> <!-- Set the width and height directly here -->
+</div>
+
+
+
+  
+
+<script src="Questionnaire.js"></script> 
+
+<script>
+  const dialogueTexts = [
+      "STOP! 😡",
+      "What's your business in Djenne, travelers?",
+      "Just passing through, we mean no harm. 🙏",
+      "To enter our city you must prove your knowledge!"
+  ];
+
+  const dialogueBoxes = document.querySelectorAll('.dialogue-box');
+  const dialogueSpans = document.querySelectorAll('.dialogue-text');
+  const avatars = document.querySelectorAll('.avatar');
+  let index = 0;
+
+  function typeWriter(text, spanElement, dialogueBox) {
+      let charIndex = 0;
+      const typing = setInterval(() => {
+          if (charIndex < text.length) {
+              spanElement.textContent += text.charAt(charIndex);
+              charIndex++;
+          } else {
+              clearInterval(typing);
+              index++;
+              if (index < dialogueTexts.length) {
+                  dialogueBoxes[index].style.display = 'block'; // Show dialogue box
+                  setTimeout(() => {
+                      typeWriter(dialogueTexts[index], dialogueSpans[index], dialogueBoxes[index]);
+                  }, 1000); // 1000ms delay between dialogues
+              } else {
+                window.location.href = "Questionnaire.html";
+                const djenneGate = new DjenneGate(); // Instantiate DjenneGate class
+                 djenneGate.displayQuestion(); // Display initial question
+                const userAnswer = document.getElementById("fname").value;
+    councilGriot.checkAnswer(userAnswer);
+                
+              }
+          }
+      }, 100);
+  }
+
+  // Initially show the first dialogue box and its avatar
+  dialogueBoxes[index].style.display = 'block';
+  avatars[index].style.display = 'block';
+
+  // Start typing the first dialogue
+  typeWriter(dialogueTexts[index], dialogueSpans[index], dialogueBoxes[index]);
+</script>
+
+</body>
+</html>

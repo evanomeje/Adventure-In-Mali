@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <title>Lost Caravan</title>
+    <style>
+        .title {
+            position: absolute;
+            
+            top: -60px; 
+           
+            font-family: 'Press Start 2P';
+            font-size: 35px; 
+            
+        }
+        body {
+            background-color: #e9e9e9;
+            position: relative;
+            font-family: 'Outfit';
+            text-align: center;
+            border: 4px solid;
+            width: 750px;
+            height: 460px;
+            right: -300px;
+            bottom: -80px;
+            size: 80px;
+            
+        }
+
+      
+        .gameContainer {
+            text-align: left;
+        }
+
+        .direction-button {
+            position: sticky;
+            margin: 5px;
+            padding: 10px;
+            font-size: 25px;
+            font-weight: bold;
+            border: 4px solid black;
+            background-color: #f2c94c;
+            cursor: pointer;
+            font-family: 'Outfit';
+            left: 50px;
+        }
+
+        #playerInputs {
+            margin-top: 20px;
+            font-size: 20px;
+            text-align: center;
+            overflow-Y: auto;
+            overflow-x: hidden;
+            font-family: 'outfit';
+            max-height: 297px;
+            
+        }
+
+        #playerInputs button {
+            display: inline-block;
+        }
+
+        .colonial-art {
+            position: fixed;
+            bottom: -260px;
+            left: -90px;
+        }
+
+        .colonial-art2 {
+            position: fixed;
+            bottom: -55px;
+            left: 970px;
+            transform: scaleX(-1);
+        }
+
+        h2 {
+            font-family: 'Outfit';
+            font-size: 35px;
+            font-weight: bolder;
+        }
+
+        p {
+            position: relative;
+            font-family: 'Outfit';
+            font-size: 35px;
+            font-weight: bolder;
+            text-align: left;
+            right: -350px
+        }
+
+        ul {
+    list-style-type: none;
+}
+
+        li {
+            position: relative;
+            font-size: 35px;
+            font-weight: bolder;
+            text-align: left;
+            right: -278px;
+
+          
+
+
+        }
+
+       
+#playerInputs::-webkit-scrollbar {
+    width: 25px; 
+  }
+  
+  #playerInputs::-webkit-scrollbar-track {
+    background: #000; 
+  }
+  
+  #playerInputs::-webkit-scrollbar-thumb {
+    background-color: #000; 
+    border: #f2c94c solid;
+  }
+  
+
+  #playerInputs::-webkit-scrollbar-thumb:hover {
+    background: #f2c94c ; 
+  }
+
+  button {
+    position: relative;
+    border: 4px solid black ;
+    font-size: large;
+    font-family: 'Press Start 2P';
+    background-color: #f2c94c;
+    bottom: -225px;
+    height: 50px;
+
+  }
+
+  button:hover {
+    background-color: #e6b800; /* Change background color on hover */
+}
+
+
+    </style>
+</head>
+
+<body>
+    <div class="title">*Adventure's in Mali*</div>
+
+    <div id="gameContainer">
+        <div class="background-container">
+            <button onclick="startGame()">Start Game</button>
+        </div>
+       
+        <button onclick="startGame()">Start Game</button>
+    </div>
+
+    <script>
+        class LostCaravan {
+            constructor() {
+                this.words = ["*Left", "*Right", "*Forward", "*Backward", "*Stop"];
+                this.roundNumber = 1;
+                this.gameOver = false;
+                this.score = 0;
+                this.questSequence = [];
+                this.playerAnswer = [];
+            }
+
+            async showRoundQuest() {
+    const gameContainer = document.getElementById("gameContainer");
+    gameContainer.innerHTML = '';
+
+    const heading = document.createElement("h2");
+    heading.textContent = "Get ready to remember the directions...";
+    gameContainer.appendChild(heading);
+
+    await this.sleep(3000); // Delay for 3 seconds for slower transition
+
+    gameContainer.innerHTML = '';
+
+    const directionsHeading = document.createElement("h2");
+    directionsHeading.textContent = "Remember the following directions:";
+    gameContainer.appendChild(directionsHeading);
+
+    const directionsText = document.createElement("p");
+    directionsText.style.whiteSpace = "pre";
+    gameContainer.appendChild(directionsText);
+
+    for (let i = 0; i < this.questSequence.length; i++) {
+        await this.typeText(this.questSequence[i] + "\n", directionsText);
+    }
+
+    await this.sleep(1000); // Reduce delay to 1000 milliseconds (1 second) for faster transition
+
+    gameContainer.innerHTML = '';
+
+    const inputHeading = document.createElement("h2");
+    inputHeading.textContent = "Now, input the directions you remember:";
+    gameContainer.appendChild(inputHeading);
+
+    this.playerInput();
+}
+
+            async typeText(text, parentElement) {
+                return new Promise(resolve => {
+                    const delay = 100; // Adjust typing speed here
+                    let i = 0;
+                    const interval = setInterval(() => {
+                        parentElement.textContent += text[i];
+                        i++;
+                        if (i === text.length) {
+                            clearInterval(interval);
+                            resolve();
+                        }
+                    }, delay);
+                });
+            }
+
+            sleep(ms) {
+                return new Promise(resolve => setTimeout(resolve, ms));
+            }
+
+            generateSequence() {
+                this.questSequence = [];
+                const tempWords = [...this.words].sort(() => Math.random() - 0.5);
+                const sequenceLength = this.roundNumber * 2;
+                for (let i = 0; i < sequenceLength; i++) {
+                    this.questSequence.push(tempWords[i % tempWords.length]);
+                }
+            }
+
+            playerInput() {
+                this.playerAnswer = [];
+                const gameContainer = document.getElementById("gameContainer");
+
+                const inputContainer = document.createElement("div");
+                inputContainer.id = "playerInputs";
+
+                this.words.forEach(direction => {
+                    const button = document.createElement("button");
+                    button.textContent = direction;
+                    button.classList.add("direction-button");
+                    button.onclick = () => this.addDirection(direction);
+                    inputContainer.appendChild(button);
+                });
+
+                gameContainer.appendChild(inputContainer);
+
+                const submitButton = document.createElement("button");
+                submitButton.textContent = "Submit";
+                submitButton.classList.add("direction-button");
+                submitButton.onclick = () => this.checkAnswer();
+                gameContainer.appendChild(submitButton);
+            }
+
+            addDirection(direction) {
+                this.playerAnswer.push(direction);
+                const answerList = document.getElementById("answerList");
+                if (!answerList) {
+                    const list = document.createElement("ul");
+                    list.id = "answerList";
+                    document.getElementById("playerInputs").appendChild(list);
+                }
+                const listItem = document.createElement("li");
+                listItem.textContent = direction;
+                document.getElementById("answerList").appendChild(listItem);
+            }
+
+            checkAnswer() {
+                let correctWords = 0;
+                const minSteps = Math.min(this.questSequence.length, this.playerAnswer.length);
+                for (let i = 0; i < minSteps; i++) {
+                    if (this.questSequence[i] === this.playerAnswer[i]) {
+                        correctWords++;
+                    }
+                }
+                this.score += correctWords * this.questSequence.length;
+                alert(`You got ${correctWords} directions correct!`);
+                this.roundNumber++;
+                setTimeout(() => {
+                    if (correctWords === this.questSequence.length) {
+                        this.generateSequence();
+                        this.showRoundQuest();
+                    } else {
+                        alert(`Game Over! Your final score is: ${this.score}`);
+                    }
+                }, 5000);
+            }
+
+            play() {
+                this.generateSequence();
+                this.showRoundQuest();
+            }
+        }
+
+        function startGame() {
+        const game = new LostCaravan();
+        game.play();
+    }
+
+    document.addEventListener("DOMContentLoaded", function(event) {
+        startGame(); // Automatically start the game when the page loads
+    });
+    </script>
+
+    <div class="colonial-art">
+        <img src="camel.png" width="560" height="660">
+    </div>
+
+    <div class="colonial-art2">
+        <img src="camel2.png" width="400" height="550">
+    </div>
+</body>
+
+</html>

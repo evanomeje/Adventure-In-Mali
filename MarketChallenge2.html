@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adventure's in Mali - Puzzle Round</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Jacquard+12+Charted&family=Jacquard+24&family=Jersey+10+Charted&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+</head>
+<style>
+    
+
+    .sketchfab-embed-wrapper img {
+        max-width: 300px;
+        max-height: auto;
+        border: 4px solid black;
+    }
+
+    .sketchfab-embed-wrapper p.text {
+    left: 35x;
+
+        border:4px solid black;
+        background-color: #f2c94c;
+    }
+
+
+
+</style>
+<body>
+    <h1>*Adventure's in Mali*</h1>
+
+    <div id="market-challenge-game-display" class="market-challenge-game-display">
+
+       
+        <div id="game-box" class="game-box">
+            <div id="market-challenge-instruction" class="market-challenge-instruction">
+                <p>Objective: 
+                    Gather materials to create your ceremonial mask.</p>
+            </div>
+
+     
+    <div class="sketchfab-embed-wrapper">
+        <img src="calabash.png" alt="Calabash Image">
+        <p class="text">✣ Calabash</p>
+    </div>
+
+    <div class="sketchfab-embed-wrapper">
+        <img src="clay.png" alt="Clay Image">
+        <p class="text">✣ Clay</p>
+    </div>
+
+    <div class="sketchfab-embed-wrapper">
+        <img src="beads.png" alt="Beads Image">
+        <p class="text">✣ Beads</p>
+    </div>
+
+    <div class="sketchfab-embed-wrapper">
+        <img src="hausa_leather_bag.png" alt="Hausa Leather Bag Image">
+        <p class="text">✣ Hausa Leather Bag</p>
+    </div>
+
+    <div class="sketchfab-embed-wrapper">
+        <img src="cowrie.png" alt="Cowrie Image">
+        <p class="text">✣ Cowrie</p>
+    </div>
+
+    <div class="sketchfab-embed-wrapper">
+        <img src="pigment.png" alt="Pigment Image">
+        <p class="text">✣ Pigment</p>
+    </div>
+
+    <div class="sketchfab-embed-wrapper">
+        <img src="manilla.png" alt="Manilla Image">
+        <p class="text">✣ Manilla</p>
+    </div>
+
+    <div class="sketchfab-embed-wrapper">
+        <img src="knife.png" alt="Knife Image">
+        <p class="text">✣ Knife</p>
+    </div>
+
+    <div class="sketchfab-embed-wrapper">
+        <img src="bamum.png" alt="Bamum Bead Statue Image">
+        <p class="text">✣ Bamum Bead Statue</p>
+    </div>
+
+    <div class="sketchfab-embed-wrapper">
+        <img src="fish.png" alt="Fish Image">
+        <p class="text">✣ Fish</p>
+    </div>
+
+    <div class="sketchfab-embed-wrapper">
+        <img src="woode.png.jpg" alt="Wood Image">
+        <p class="text">✣ Wood</p>
+    </div>
+
+    <div class="sketchfab-embed-wrapper">
+        <img src="skull.png" alt="Turtle Skull">
+        <p class="text">✣ Turtle Skull</p>
+    </div>
+
+    <div class="sketchfab-embed-wrapper">
+        <img src="braclet.png" alt="Benin Bracelet Image">
+        <p class="text">✣ Benin Bracelet</p>
+    </div>
+
+    <div class="sketchfab-embed-wrapper">
+        <img src="tusk.png" alt="Ivory Tusk Image">
+        <p class="text">✣ Ivory Tusk</p>
+    </div>
+
+    <div class="sketchfab-embed-wrapper">
+        <img src="spoon.png" alt="Carved Spoon Image">
+        <p class="text">✣ Carved Spoon</p>
+    </div>
+
+    <div class="sketchfab-embed-wrapper">
+        <img src="Benin bronze.png" alt="Bronze Head Image">
+        <p class="text">✣ Bronze Head</p>
+    </div>
+        
+
+
+           
+       
+            
+         
+        </div>
+
+
+        
+
+       
+
+        <div id="show-collection" class="show-collection">
+
+            <div id="collection-text" class="collection-text"></div>
+
+             
+        </div>
+    </div>
+
+    <div id="market-challenge-hint" class="market-challenge-hint">
+        <p>*Hint: Your beaded mask is shelled and carved,  
+        coloured with materials of the earth and sharpened
+        by the desires of your mind*</p>
+    </div>
+
+    
+
+    <form id="PuzzleGame" action="index.html" method="get" class="form-container">
+        <div class="mtracking-pad">
+            <label for="fname">Enter:</label>
+            <input type="text" id="fname" name="fname" placeholder="*" required>
+        </div>
+        <div id="options-container"></div>
+        <button type="button" class="MYes_Button" onclick="checkAnswer()"><big>*</big></button>
+        <button type="button" class="MNo_Button" onclick="resetInput()"><big>*</big></button>
+    </form>
+
+    <script src="MarketChallenge.js"></script>
+    <script src="popup.js"></script>
+</body>
+</html>

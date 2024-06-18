@@ -7,19 +7,38 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Jacquard+12+Charted&family=Jacquard+24&family=Jersey+10+Charted&family=Press+Start+2P&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
 </head>
+<style>
+    .lag-popup {
+        position: fixed;
+        bottom: 50px;
+        right: 10px;
+        font-family: 'Outfit';
+        font-weight: bold;
+        border: 4px solid black;
+        background-color: yellow;
+
+       
+    }
+</style>
 <body>
     <h1>*Adventure's in Mali*</h1>
 
     <div id="market-challenge-game-display" class="market-challenge-game-display">
+
+       
         <div id="game-box" class="game-box">
             <div id="market-challenge-instruction" class="market-challenge-instruction">
                 <p>Objective: 
                     Gather materials to create your ceremonial mask.</p>
             </div>
 
-            <div class="sketchfab-embed-wrapper"> <iframe title="Red calbash box from Mali" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/197da74b235c478497327ccfc07f0b3d/embed?autospin=1&autostart=1&camera=0&transparent=1&ui_animations=0&ui_infos=0&ui_stop=0&ui_inspector=0&ui_watermark_link=0&ui_watermark=0&ui_ar=0&ui_help=0&ui_settings=0&ui_vr=0&ui_fullscreen=0&ui_annotations=0"> </iframe> 
-                <p class="text">✣ Calabash</p> 
+            <div class="sketchfab-embed-wrapper">
+                <iframe title="Red calbash box from Mali" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/197da74b235c478497327ccfc07f0b3d/embed?autospin=1&autostart=1&camera=0&transparent=1&ui_animations=0&ui_infos=0&ui_stop=0&ui_inspector=0&ui_watermark_link=0&ui_watermark=0&ui_ar=0&ui_help=0&ui_settings=0&ui_vr=0&ui_annotations=0&dnt=1&scene.optimized=1&config.highlight=1"></iframe>
+                <p class="text">✣ Calabash</p>
             </div>
         
 
@@ -152,6 +171,16 @@
         by the desires of your mind*</p>
     </div>
 
+    <div id="lag-popup" class="lag-popup">
+        <div class="popup-content">
+            <p>Is the game too laggy?</p>
+            <p>Trust me its not your internet :(</p>
+            <p>Wait 5 min to see 3d assets...OR</p>
+            <button onClick="window.location.href = 'MarketChallenge2.html';" id="lag-button">Click me</button>
+
+        </div>
+    </div>
+
     <form id="PuzzleGame" action="index.html" method="get" class="form-container">
         <div class="mtracking-pad">
             <label for="fname">Enter:</label>
@@ -163,5 +192,6 @@
     </form>
 
     <script src="MarketChallenge.js"></script>
+    <script src="popup.js"></script>
 </body>
 </html>

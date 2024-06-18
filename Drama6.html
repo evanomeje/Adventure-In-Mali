@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+  <title>NPC Dialogue</title>
+  <style>
+ 
+
+    .avatar {
+      width: 100px;
+      height: 130px;
+      background-size: cover;
+      margin-right: 10px;
+      float: left;
+      border: 4px solid black;
+      display: none; /* Initially hide avatars */
+    }
+
+    .dialogue-container {
+      top: 50px;
+      margin: 5px;
+    }
+
+    .dialogue-box {
+      font-family: Arial, sans-serif;
+      font-size: 15px;
+      padding: 10px;
+      border: 4px solid #000000;
+      margin-bottom: 20px;
+      overflow: hidden;
+      display: none; 
+      background-color: #f2c94c; 
+      width: 868px;
+      height: auto;
+      position: absolute;
+      top: 69%;
+      z-index: 1000;
+      left: 225px;
+    }
+
+    .dialogue-text {
+      white-space: pre-wrap; /* Allow text to wrap */
+      overflow: hidden;
+      border-right: .15em solid black;
+      font-family: 'Outfit';
+      font-weight: bold;
+      font-size: 30px;
+    }
+
+    body {
+      background-color: #e9e9e9;
+      overflow-y: hidden;
+    }
+
+
+    .slideshow-container {
+      position: relative;
+      max-width: 620px; 
+      margin: auto;
+      align-items: right;
+      right: 520px;
+      
+      
+      top: 40px;
+    }
+
+    .name {
+      font-size: 35px; /* Change this value to the desired font size */
+      font-weight: bold;
+    }
+
+    .slides {
+      display: none;
+      position: absolute;
+      width: 1110px;
+      height: auto;
+      transition: opacity 1s ease; /* Fade transition */
+      align-items: right;
+      left: 265px;
+      top: -80px;
+    }
+
+    
+
+   
+
+
+  </style>
+</head>
+<body>
+
+  <div id="dialogue-container">
+    <div class="dialogue-box">
+      <div class="avatar guard-avatar" style="background-image: url('sadio3.png')"></div>
+      <strong class="name">SADIO:</strong> <span class="dialogue-text"></span>
+    </div>
+  </div>
+
+ 
+
+  <!-- Slideshow container -->
+  <div class="slideshow-container">
+    <img class="slides fade" src="drama6pic.png" width="620" height="300">
+  </div>
+
+  <script>
+    // JavaScript code for the slideshow goes here
+    let slideIndex = 0;
+    showSlides();
+
+    function showSlides() {
+      let slides = document.getElementsByClassName("slides");
+      for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+      }
+      slideIndex++;
+      if (slideIndex > slides.length) { slideIndex = 1 }
+      slides[slideIndex - 1].style.display = "block";
+      setTimeout(showSlides, 2000); // Change image every 2 seconds
+    }
+  
+    const dialogueTexts = [
+      "SHHHH I hear a conversation,💫\n",
+      "I think those are the griots the merchant told us about. 😮\n",
+       "We must listen carefully!\n"
+    ];
+
+    const dialogueBox = document.querySelector('.dialogue-box');
+    const dialogueSpan = document.querySelector('.dialogue-text');
+    const avatar = document.querySelector('.avatar');
+    let index = 0;
+
+    function typeWriter(text, spanElement, callback) {
+      let charIndex = 0;
+      spanElement.innerHTML = ''; // Clear the previous text
+      const typing = setInterval(() => {
+        if (charIndex < text.length) {
+          spanElement.innerHTML += text.charAt(charIndex);
+          charIndex++;
+        } else {
+          clearInterval(typing);
+          if (callback) callback();
+        }
+      }, 100);
+    }
+
+    function showNextDialogue() {
+      if (index < dialogueTexts.length) {
+        dialogueBox.style.display = 'block';
+        avatar.style.display = 'block';
+        typeWriter(dialogueTexts[index], dialogueSpan, () => {
+          index++;
+          // Check if there are more dialogues to show
+          if (index < dialogueTexts.length) {
+            setTimeout(showNextDialogue, 200); // Delay before showing the next dialogue
+          }
+
+          if (index === dialogueTexts.length) { 
+            setTimeout(showNextDialogue, 5000);
+            window.location.href = "Drama6.html"
+          }
+        });
+      }
+    }
+
+    // Start typing the first dialogue
+    showNextDialogue();
+  </script>
+</body>
+</html>

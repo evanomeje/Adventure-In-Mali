@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <title>Snake Hangman</title>
+    <style>
+
+.title {
+            /* Your title styles */
+            font-size: 35px;
+          
+            margin-bottom: 5px;
+            text-align: center;
+            font-family: 'Press start 2p';
+        }
+        #snakeBoard, #lettersBoard {
+            font-family: monospace;
+            font-size: 10px;
+            line-height: 1.2;
+        }
+
+        body {
+            background-color: #e9e9e9;
+            overflow: hidden;
+           
+           
+        }
+
+        #lettersBoard {
+            display: none;
+            position: relative;
+            font-size: 10px;
+            top: 30px;
+            left: 35px;
+        }
+
+        #snakeBoard {
+            position: relative;
+            display: flex;
+            border: 4px solid black; /* Add border to the container */
+            width: 1325px; /* Set width */
+            height: 350px; /* Set height */
+            background-color: brown; /* Add background color */
+            background-image: url('clay.png');
+            padding: 10px; /* Add some padding */
+            right: 2px;
+            font-size: 70px;
+        }
+
+        #guessedWord {
+            font-family: Arial, sans-serif;
+            font-size: 28px;
+            font-weight: bold;
+            font-size: 35px;
+        }
+
+        #userInput {
+            padding: 5px; /* Adjust padding */
+            font-size: 16px; /* Adjust font size */
+            border: 4px solid black; /* Adjust border */
+            width: 165px;
+            
+        }
+
+        #userInput::placeholder {
+    color: #aaa; /* Placeholder text color */
+    font-style: italic; /* Italicize the placeholder text */
+    font-weight: bold;
+}
+
+        .guess-button {
+            border: 4px solid black;
+            background-color: #f2c94c;
+            font-size: 16px;
+            padding: 4px;
+            font-weight: bold;
+            font-family: 'Outfit';
+            cursor:grab;
+            
+        }
+
+        
+
+        
+
+        /* Define the styling for the images */
+        .image {
+            width: auto; /* Adjust the width as needed */
+            height: auto; /* Maintain aspect ratio */
+            margin-right: 0px; 
+        }
+
+        .hidden {
+            display: block; /* Hide the image */
+        }
+
+        .letter-row {
+            display: flex;
+            justify-content: center;
+            
+        }
+
+        .letter-box {
+            width: 45px;
+            height: auto;
+            border: 4px solid black;
+            font-size: large;
+            text-align: center;
+            margin: 2px;
+            background-color: #f2c94c;
+            font-size: 35px;
+            font-weight: bold;
+            position: relative;
+            bottom: 70px;
+            font-family: 'Outfit';
+            left: 170px;
+           
+
+        }
+
+        .guessed {
+            background-color: black; 
+            color: black; 
+            text-decoration: line-through; 
+            pointer-events: none; 
+        }
+
+        .hint-container {
+            font-family: 'Outfit';
+            font-size: 20px;
+            font-weight: bold;
+            width: 230px;
+            height: auto;
+            background-color: #f2c94c;
+            border: 4px solid black;
+            position: relative;
+            bottom: 160px;
+            padding: 5px;
+            
+           
+            
+        }
+
+        .hint-text {
+    margin: 0; /* Remove default margins */
+}
+
+    </style>
+    <div class="title">*Adventure in Mali*</div>
+</head>
+<body>
+   
+
+    <div id="snakeBoard"></div>
+    <div id="lettersBoard"></div>
+    <div id="guessedWord"></div>
+    <div id="inputContainer">
+        <input type="text" id="userInput" placeholder="Enter a letter">
+        <button class="guess-button" onclick="handleGuess()">Guess</button>
+    </div>
+    <div class="letter-row">
+    <div class="letter-box" data-letter="A">A</div>
+<div class="letter-box" data-letter="B">B</div>
+<div class="letter-box" data-letter="C">C</div>
+<div class="letter-box" data-letter="D">D</div>
+<div class="letter-box" data-letter="E">E</div>
+<div class="letter-box" data-letter="F">F</div>
+<div class="letter-box" data-letter="G">G</div>
+<div class="letter-box" data-letter="H">H</div>
+<div class="letter-box" data-letter="I">I</div>
+<div class="letter-box" data-letter="J">J</div>
+<div class="letter-box" data-letter="K">K</div>
+<div class="letter-box" data-letter="L">L</div>
+</div>
+
+
+
+<div class="letter-row">
+<div class="letter-box" data-letter="M">M</div>
+<div class="letter-box" data-letter="N">N</div>
+<div class="letter-box" data-letter="O">O</div>
+<div class="letter-box" data-letter="P">P</div>
+<div class="letter-box" data-letter="Q">Q</div>
+<div class="letter-box" data-letter="R">R</div>
+<div class="letter-box" data-letter="S">S</div>
+<div class="letter-box" data-letter="T">T</div>
+<div class="letter-box" data-letter="U">U</div>
+<div class="letter-box" data-letter="V">V</div>
+<div class="letter-box" data-letter="W">W</div>
+<div class="letter-box" data-letter="X">X</div>
+</div>
+
+<div class="letter-row">
+<div class="letter-box" data-letter="Y">Y</div>
+<div class="letter-box" data-letter="Z">Z</div>
+</div>
+<div class="hint-container">
+    <p class="hint-text">Hint:This Animal used to travel across the Sahara desert.</p>
+</div>
+
+
+
+    <script>
+        let lettersBoard = [
+    ["A", "B", "C", "D", "E", "F"],
+    ["G", "H", "I", "J", "K", "L"],
+    ["M", "N", "O", "P", "Q", "R"],
+    ["S", "T", "U", "V", "W", "X"],
+    ["Y", "Z"]
+];
+
+        let word = "CAMEL";
+        let guessedWord = "_".repeat(word.length);
+        let roundChecker = [1, 1, 1, 1, 1, 0, 0, 0,0]; 
+        let lives = 5; 
+
+      
+        const snakeBodyMap = {
+            "snakebody0": 0,
+            "snakebody1": 1,
+            "snakebody2": 2,
+            "snakebody3": 3,
+            "snakebody4": 4,
+            "snakebody5": 5,
+            "snakebody6": 6,
+            "snakebody7": 7,
+            "snakebody8": 8,
+            "snakebody9": 9
+        };
+        function drawGame() {
+    let snakeBoardDiv = document.getElementById("snakeBoard");
+    let snakeHtml = '';
+
+    for (let i = 0; i < 10; i++) {
+        if (roundChecker[i] === 1) {
+            let snakeBodyIndex = "snakebody" + i;
+            let snakeBodyNumber = snakeBodyMap[snakeBodyIndex];
+            snakeHtml += '<img src="' + snakeBodyIndex + '.png" alt="Snake Body ' + snakeBodyNumber + '" class="image">';
+        }
+    }
+
+    snakeBoardDiv.innerHTML = snakeHtml;
+
+    let lettersBoardDiv = document.getElementById("lettersBoard");
+    lettersBoardDiv.innerHTML = ''; 
+
+    // Iterate over the rows of the 2D lettersBoard array
+    lettersBoard.forEach(row => {
+        let rowDiv = document.createElement('div');
+        rowDiv.className = 'letter-row';
+        
+        // Iterate over the letters in each row
+        row.forEach(letter => {
+            let letterBox = document.createElement('div');
+            letterBox.className = 'letter-box';
+            if (letter !== ' ' && guessedWord.indexOf(letter) === -1) { 
+                letterBox.textContent = letter;
+            }
+            rowDiv.appendChild(letterBox);
+        });
+        lettersBoardDiv.appendChild(rowDiv);
+    });
+
+    let guessedWordDiv = document.getElementById("guessedWord");
+    guessedWordDiv.textContent = "Guessed Word: " + guessedWord;
+}
+function handleLetterSelection(letter) {
+    let userInput = letter;
+    drawGame();
+
+    if (searchWord(userInput)) {
+        alert("Correct guess!");
+        // Show snake body image when the guess is correct
+        updateSnakeBody(true, userInput);
+    } else {
+        alert("Incorrect guess!");
+        context();
+        // Animate here if needed
+        updateSnakeBody(false);
+    }
+
+    drawGame();
+
+    if (isGameOver()) {
+        displayGameOver();
+    }
+}
+
+        function displayGameOver() {
+            if (guessedWord === word) {
+                alert("Congratulations! You've guessed the word!");
+            } else {
+                alert("You lost! The correct word was " + word + "\nGame Over!😫");
+            }
+        }
+
+        function isGameOver() {
+            return guessedWord === word || lives <= 0;
+        }
+
+        function searchWord(userInput) {
+    let found = false;
+    for (let i = 0; i < word.length; i++) {
+        if (word[i] === userInput) {
+            guessedWord = guessedWord.substring(0, i) + userInput + guessedWord.substring(i + 1);
+            found = true;
+            ///
+           
+        }
+    }
+    if (!found) {
+        lives--; // Decrease the number of lives if the guess is incorrect
+       
+    } else {
+        lives++; // Increase lives if the guess is correct
+    }
+    removeGuessedLetterFromBoard(userInput);
+    return found;
+}
+        function context() {
+            alert("Hint: This Animal used to travel across the Sahara desert.");
+        }
+
+        function handleGuess() {
+    let userInput = document.getElementById("userInput").value;
+    userInput = userInput.toUpperCase();
+
+    drawGame();
+
+    if (searchWord(userInput)) {
+        alert("Correct guess!");
+        // Show snake body image when the guess is correct
+        updateSnakeBody(true, userInput);
+        // Remove the guessed letter from the letter board
+        
+    } else {
+        alert("Incorrect guess!");
+        context();
+        // Animate here if needed
+        updateSnakeBody(false);
+        removeGuessedLetterFromBoard(userInput);
+    }
+
+    drawGame();
+
+    if (isGameOver()) {
+        displayGameOver();
+    }
+}
+
+function removeGuessedLetterFromBoard(userInput) {
+    // Iterate over each row in the 2D lettersBoard array
+    lettersBoard.forEach(row => {
+        // Iterate over each letter in the row
+        row.forEach(letter => {
+            // Access the letter box with the same letter as userInput
+            let box = document.querySelector('.letter-box[data-letter="' + letter + '"]');
+            if (box && box.textContent.toUpperCase() === userInput) {
+                box.classList.add('guessed');
+            }
+        });
+    });
+}
+
+
+
+
+
+function updateSnakeBody(correct, userInput) {
+    if (correct) {
+        // Find the index of the correct segment
+        let index = roundChecker.indexOf(0);
+        if (index !== -1) {
+            // Set all segments before and including the correct segment to 1
+            for (let i = 0; i <= index; i++) {
+                roundChecker[i] = 1;
+            }
+            // Set all segments after the correct segment to 0
+            for (let i = index + 1; i < roundChecker.length; i++) {
+                roundChecker[i] = 0;
+            }
+        }
+    } else {
+        // Remove the last segment of the snake body if the guess is incorrect
+        let lastIndex = roundChecker.lastIndexOf(1);
+        if (lastIndex !== -1) {
+            roundChecker[lastIndex] = 0;
+        }
+    }
+
+    // Update snake body images based on round checker
+    let snakeHtml = '';
+    for (let i = 0; i < roundChecker.length; i++) {
+        if (roundChecker[i] === 1) {
+            snakeHtml += '<img id="snakeBody' + i + '" src="snakebody' + i + '.png" alt="Snake Body" class="image">';
+        }
+    }
+
+    // Update the snake board
+    let snakeBoardDiv = document.getElementById("snakeBoard");
+    snakeBoardDiv.innerHTML = snakeHtml;
+
+    // Check if the word is complete after updating snake body
+    if (guessedWord === word) {
+        alert("Congratulations! You've guessed the word!");
+    }
+}
+
+
+
+        drawGame();
+       
+    </script>
+</body>
+</html>

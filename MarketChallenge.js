@@ -22,6 +22,12 @@ class MarketChallenge {
             textBox.readOnly = true; 
             collectionText.appendChild(textBox);
             collectionText.appendChild(document.createElement("br")); 
+
+            // Check if all correct answers have been added
+        if (this.collection.length === this.answerKey.length && this.answerKey.every(item => this.collection.includes(item))) {
+            setTimeout(() => { window.location.href = "Drama4.html"; }, 100);
+            
+        }
         });
     }
 
