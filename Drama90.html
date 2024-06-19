@@ -167,10 +167,6 @@
     const dialogueSpans = document.querySelectorAll('.dialogue-text');
     const avatars = document.querySelectorAll('.avatar');
     let index = 0;
-
-    function redirectToQuestionnaire() {
-      window.location.href = 'question2.html';
-    }
   
     function typeWriter(text, spanElement, dialogueBox) {
       let charIndex = 0;
@@ -190,7 +186,7 @@
             }, 1000); // 1000ms delay between dialogues
           } else {
             // Redirect to the questionnaire when done
-            setTimeout(redirectToQuestionnaire, 1000); // Adjust delay as needed
+            window.location.href = 'question2.html';
           }
         }
       }, 100);
