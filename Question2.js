@@ -65,7 +65,7 @@ class CouncilGriot extends Question {
     nextQuestion() {
         this.currentQuestionIndex++;
         if (this.currentQuestionIndex >= this.questions.length) {
-            alert("No more questions!");
+            window.location.href = "Drama8.html";
             this.currentQuestionIndex = this.questions.length - 1;
         }
         this.displayQuestion();

@@ -15,8 +15,8 @@
     }
 
     .avatar {
-      width: 200px;
-      height: 250px;
+      width: 120px;
+      height: 150px;
       background-size: cover;
       margin-right: 10px;
       float: left;
@@ -38,12 +38,12 @@
       overflow: hidden;
       display: none; 
       background-color: #f2c94c; 
-      width: 1209px;
+      width: 729px;
       height: auto;
       position: absolute;
-      top: 40%;
+      top: 68.5%;
       z-index: 1000;
-      left: 15px;
+      left: 92px;
     }
 
     .dialogue-text {
@@ -52,37 +52,43 @@
       border-right: .15em solid black;
       font-family: 'Outfit';
       font-weight: bold;
-      font-size: 50px;
+      font-size: 30px;
     }
 
     body {
       background-color: #e9e9e9;
+      background-repeat: no-repeat;
+      background-size: cover; 
       overflow-y: hidden;
     }
 
     /* Slideshow styles */
     .slideshow-container {
       position: relative;
-      max-width: 620px; /* Adjust max-width as needed */
+      max-width: 120px; /* Adjust max-width as needed */
       margin: auto;
       align-items: right;
-      left: 4px;
+      right: 140px;
+    
+      display: block;
     }
 
     .name {
-      font-size: 55px; /* Change this value to the desired font size */
+      font-size: 35px; /* Change this value to the desired font size */
       font-weight: bold;
     }
 
     .slides {
       display: none;
       position: absolute;
-      width: 610px;
-      height: auto;
+      width: 480px;
+      height: 600px;
       transition: opacity 1s ease; /* Fade transition */
       align-items: right;
-      left: 265px;
-      top: -80px;
+      left: 365px;
+      bottom: -612px;
+      display: block;
+      border: #000000 4px solid;
     }
 
     .fade {
@@ -117,34 +123,20 @@
 
   <div id="dialogue-container">
     <div class="dialogue-box">
-      <div class="avatar guard-avatar" style="background-image: url('yorubamerchant.png')"></div>
-      <strong class="name">YORUBA MERCHANT:</strong> <span class="dialogue-text"></span>
+      <div class="avatar guard-avatar" style="background-image: url('sadio3.png')"></div>
+      <strong class="name">SADIO:</strong> <span class="dialogue-text"></span>
     </div>
   </div>
 
- 
-
   <!-- Slideshow container -->
   <div class="slideshow-container">
-    <img class="slides fade" src="people.png" width="620" height="300">
-    <img class="slides fade" src="people.png" width="620" height="300">
-    <img class="slides fade" src="people.png" width="620" height="300">
-    <img class="slides fade" src="people.png" width="620" height="300">
+    <img class="slides fade" src="overthere.png" width="620" height="300">
+    <img class="slides fade" src="overthere.png" width="620" height="300">
+    <img class="slides fade" src="overthere.png" width="620" height="300">
+    <img class="slides fade" src="overthere.png" width="620" height="300">
+    <img class="slides fade" src="overthere.png" width="620" height="300">
+    <img class="slides fade" src="overthere.png" width="620" height="300">
   </div>
-
-
-
-  <!-- Art container -->
-  <div class="art">
-    <img src="yorubamerchant2.png" width="620" height="auto">
-  </div>
-
-  <div id="sketchfab-embed" class="sketchfab-embed-wrapper">
-    <iframe title="Yoruba Cap Crest Mask (Gelede)" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/f632ca039e3743eaa0844a18bbeeeb6c/embed?autospin=1&autostart=1&transparent=1&ui_animations=0&ui_infos=0&ui_stop=0&ui_inspector=0&ui_ar=0&ui_help=0&ui_settings=0&ui_vr=0&ui_fullscreen=0&ui_annotations=0" width="100%" height="300">
-    </iframe>
-  </div>
-
- 
 
   <script>
     // JavaScript code for the slideshow goes here
@@ -163,9 +155,7 @@
     }
   
     const dialogueTexts = [
-      "OMO, YOU TRY WELL WELL! 🙌 YOU DON GATHER ALL DI THINGS.",
-      "E GO HELP YOU PASS NIGER RIVER AND MEET GRIOTS.",
-      "DIS MASK, E GET SPECIAL POWER."
+      " Ahhh look the River Niger is over there."
     ];
 
     const dialogueBox = document.querySelector('.dialogue-box');
@@ -184,7 +174,7 @@
           clearInterval(typing);
           if (callback) callback();
         }
-      }, 100);
+      }, 200); // Slowing down typing speed
     }
 
     function showNextDialogue() {
@@ -195,12 +185,12 @@
           index++;
           // Check if there are more dialogues to show
           if (index < dialogueTexts.length) {
-            setTimeout(showNextDialogue, 200); // Delay before showing the next dialogue
+            setTimeout(showNextDialogue, 900); // Delay before showing the next dialogue
           }
 
           if (index === dialogueTexts.length) { 
             setTimeout(showNextDialogue, 5000);
-            window.location.href = "DramaNigerRiver.html"
+            window.location.href = "riverniger.html"
           }
         });
       }
