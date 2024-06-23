@@ -58,7 +58,9 @@ class NkoScript {
     displayScore() {
         const collectionText = document.getElementById('collection-text');
         collectionText.innerHTML += "<p><br>You've completed all questions!</p>";
-        
+        window.location.href = "Drama13.html";
+
+
     }
 }
 
