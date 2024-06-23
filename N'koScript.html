@@ -8,6 +8,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Jacquard+12+Charted&family=Jacquard+24&family=Jersey+10+Charted&family=Press+Start+2P&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
     <style>
+         
+   
+   
         .small-box {
             display: inline-block;
             width: 150px;
@@ -20,6 +23,7 @@
             top: 30px;
             font-size: 50px;
             text-align: center;
+            cursor: pointer;
         }
 
         .small-box .text-content {
@@ -35,6 +39,7 @@
             left: 5px;
             font-size: 50px;
             color: black;
+            
         }
 
         .correct {
@@ -43,6 +48,7 @@
             border: solid 4px;
             width: 295px;
             font-family: 'Outfit';
+          
         }
 
         .incorrect {
@@ -51,30 +57,86 @@
             border: solid 4px;
             width: 295px;
             font-family: 'Outfit';
+
         }
 
         #instructionText {
-
             font-family: 'Press Start 2P';
-
         }
+
+        .clicked {
+            background-color: black; /* Example color when clicked */
+            color: #f2c94c;
+            cursor: pointer;
+            border: 4px solid #f2c94c;
+        }
+
+      
+
+        .NKYes_Button, .NKNo_Button {
+    font-family: 'Press Start 2P';
+    border: 4px solid black;
+    padding: 10px;
+    font-size: 17px;
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.NKYes_Button {
+    position: absolute;
+   top: 1036px;
+    right: 315px;
+    color: #8dc14d;
+}
+
+.NKYes_Button:hover {
+    background-color: #8dc14d;
+}
+
+.NKNo_Button {
+    top: 1037px;
+    right: 255px;
+    color: #d65c5c;
+}
+.NKNo_Button:hover {
+    background-color: #d65c5c;
+}
+.NKtracking-pad {
+    display: inline-block;
+    font-size: 24px;
+    text-align: center;
+    margin-top: 10px;
+    margin-right: 115px;
+ 
+
+}
+label[for="fname"] {
+    font-family: 'Press Start 2P';
+    
+}
+
+input[type="text"] {
+   
+    border: 4px solid black;
+}
     </style>
 </head>
 <body>
-    <h1>Adventures in Mali</h1>
+    <h1>*Adventures in Mali*</h1>
     <div id="market-challenge-game-display" class="market-challenge-game-display"></div>
     <form id="PuzzleGame" action="index.html" method="get">
-        <div class="tracking-pad">
+        <div class="NKtracking-pad">
             <label for="fname">Enter:</label>
             <input type="text" id="fname" name="fname" placeholder="*" required>
         </div>
         <div id="options-container"></div>
-        <button type="button" class="Yes_Button" onclick="checkAnswer()"><big>*</big></button>
-        <button type="button" class="No_Button" onclick="resetInput()"><big>*</big></button>
+        <button type="button" class="NKYes_Button" onclick="checkAnswer()"><big>*</big></button>
+        <button type="button" class="NKNo_Button" onclick="resetInput()"><big>*</big></button>
     </form>
     <script src="N'koScript.js"></script>
     <script>
-      
         const mainDiv = document.createElement('div');
         mainDiv.id = 'market-challenge-game-display';
         mainDiv.className = 'market-challenge-game-display';
@@ -125,6 +187,10 @@
             textContent.innerHTML = data.unicode;
             smallBox.appendChild(textContent);
 
+            smallBox.addEventListener('click', () => {
+                smallBox.classList.toggle('clicked');
+            });
+
             containerDiv.appendChild(smallBox);
         });
 
@@ -146,11 +212,9 @@
 
         document.getElementById('market-challenge-game-display').appendChild(mainDiv);
 
-       
         const nkogame = new NkoScript([12, 4, 12, 16, 0, 105]);
 
         window.onload = function () {
-            // nkogame.displayDictionary();
             nkogame.displayNextQuestion();
         };
 
@@ -162,7 +226,6 @@
         function resetInput() {
             document.getElementById("fname").value = "";
         }
-        document.getElementById("text-content").value = "\u07C3";
     </script>
 </body>
 </html>

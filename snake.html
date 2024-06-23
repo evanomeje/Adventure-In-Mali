@@ -218,7 +218,7 @@
 
         let word = "CAMEL";
         let guessedWord = "_".repeat(word.length);
-        let roundChecker = [1, 1, 1, 1, 1, 0, 0, 0,0]; 
+        let roundChecker = [1, 1, 1, 1, 1, 0, 0, 0,0, 0]; 
         let lives = 5; 
 
       
@@ -324,9 +324,7 @@ function handleLetterSelection(letter) {
     removeGuessedLetterFromBoard(userInput);
     return found;
 }
-        function context() {
-            alert("Hint: This Animal used to travel across the Sahara desert.");
-        }
+       
 
         function handleGuess() {
     let userInput = document.getElementById("userInput").value;
@@ -410,6 +408,7 @@ function updateSnakeBody(correct, userInput) {
     // Check if the word is complete after updating snake body
     if (guessedWord === word) {
         alert("Congratulations! You've guessed the word!");
+      window.location.href = "Drama12.html"
     }
 }
 

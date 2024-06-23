@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+  <title>NPC Dialogue</title>
+  <style>
+    body {
+      background-color: #e9e9e9;
+      overflow-y: hidden;
+    }
+
+    /* Slideshow styles */
+    .slideshow-container {
+      display: flex;
+      justify-content: center; /* Center content horizontally */
+      align-items: center; /* Center content vertically */
+      height: 100vh; /* Example height for the parent container, adjust as needed */
+    }
+
+    .slides {
+      display: none;
+      width: 810px;
+      height: auto;
+      transition: opacity 1s ease; /* Fade transition */
+      border: 4px solid black;
+    }
+
+    .fade {
+      animation-name: fade;
+      animation-duration: 1s;
+    }
+
+    @keyframes fade {
+      from {
+        opacity: 0.4;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="slideshow-container">
+    <img class="slides fade" src="temple1.png" width="820" height="300">
+    <img class="slides fade" src="temple2.png" width="620" height="300">
+    <img class="slides fade" src="temple3.png" width="620" height="300">
+    <img class="slides fade" src="temple4.png" width="620" height="300">
+    <img class="slides fade" src="temple5.png" width="620" height="300">
+   
+    
+  </div>
+
+  <script>
+    let slideIndex = 0;
+    let cycleCount = 0;
+    const totalCycles = 1; // Change this to the number of cycles you want before redirecting
+    const slides = document.getElementsByClassName("slides");
+
+    function showSlides() {
+      for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+      }
+      slideIndex++;
+      if (slideIndex > slides.length) {
+        slideIndex = 1;
+        cycleCount++;
+      }
+      slides[slideIndex - 1].style.display = "block";
+      if (cycleCount >= totalCycles) {
+        window.location.href = "N'koScript.html";
+       // "drama5.html";
+       // "maze.html";
+
+      } else {
+        setTimeout(showSlides, 2000); // Change image every 2 seconds
+      }
+    }
+
+    showSlides();
+  </script>
+</body>
+</html>
