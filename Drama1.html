@@ -11,8 +11,8 @@
 
 .colonial-art {
     position: fixed;
-    left: calc(50% + 50px); /* Adjust the positioning based on your layout */
-    top: 8px; /* Adjust the top position as needed */
+    left: calc(50% + 50px); 
+    top: 8px; 
     border: 4px solid black;
 }
 
@@ -24,12 +24,11 @@
       float: left;
       
       border: 4px solid black;
-      /* Initially hide avatars */
     }
 
     .dialogue-container {
         position: absolute;
-    top: 150px; /* Adjust the top position as needed */
+    top: 150px; 
     margin: 10px;
 }
     .dialogue-box {
@@ -61,12 +60,12 @@
 
 .art-container {
     position: fixed;
-    left: calc(50% - 310px); /* Adjust the positioning based on your layout */
-    bottom: 20px; /* Adjust the bottom position as needed */
+    left: calc(50% - 310px); 
+    bottom: 20px; 
 }
 
 .art {
-    margin-bottom: 10px; /* Adjust margin as needed */
+    margin-bottom: 10px; 
 }
   </style>
 </head>
@@ -95,8 +94,8 @@
 
   </div>
 
-  <div class="colonial-art"> <!-- Added the missing closing angle bracket `>` here -->
-    <img src="mainsoldier2.png" width="620" height="392"> <!-- Set the width and height directly here -->
+  <div class="colonial-art"> 
+    <img src="mainsoldier2.png" width="620" height="392"> 
 </div>
 
 
@@ -105,52 +104,8 @@
 
 <script src="Questionnaire.js"></script> 
 
-<script>
-  const dialogueTexts = [
-      "STOP! 😡",
-      "What's your business in Djenne, travelers?",
-      "Just passing through, we mean no harm. 🙏",
-      "To enter our city you must prove your knowledge!"
-  ];
+<script src = "Dialougue.js"></script>
 
-  const dialogueBoxes = document.querySelectorAll('.dialogue-box');
-  const dialogueSpans = document.querySelectorAll('.dialogue-text');
-  const avatars = document.querySelectorAll('.avatar');
-  let index = 0;
-
-  function typeWriter(text, spanElement, dialogueBox) {
-      let charIndex = 0;
-      const typing = setInterval(() => {
-          if (charIndex < text.length) {
-              spanElement.textContent += text.charAt(charIndex);
-              charIndex++;
-          } else {
-              clearInterval(typing);
-              index++;
-              if (index < dialogueTexts.length) {
-                  dialogueBoxes[index].style.display = 'block'; // Show dialogue box
-                  setTimeout(() => {
-                      typeWriter(dialogueTexts[index], dialogueSpans[index], dialogueBoxes[index]);
-                  }, 1000); // 1000ms delay between dialogues
-              } else {
-                window.location.href = "Questionnaire.html";
-                const djenneGate = new DjenneGate(); // Instantiate DjenneGate class
-                 djenneGate.displayQuestion(); // Display initial question
-                const userAnswer = document.getElementById("fname").value;
-    councilGriot.checkAnswer(userAnswer);
-                
-              }
-          }
-      }, 100);
-  }
-
-  // Initially show the first dialogue box and its avatar
-  dialogueBoxes[index].style.display = 'block';
-  avatars[index].style.display = 'block';
-
-  // Start typing the first dialogue
-  typeWriter(dialogueTexts[index], dialogueSpans[index], dialogueBoxes[index]);
-</script>
 
 </body>
 </html>

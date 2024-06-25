@@ -124,65 +124,7 @@
     <img src="mainsoldie8r2.png" width="620" height="auto">
   </div>
 
-  <script>
-    // JavaScript code for the slideshow goes here
-    let slideIndex = 0;
-    showSlides();
-
-    function showSlides() {
-      let slides = document.getElementsByClassName("slides");
-      for (let i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";
-      }
-      slideIndex++;
-      if (slideIndex > slides.length) { slideIndex = 1 }
-      slides[slideIndex - 1].style.display = "block";
-      setTimeout(showSlides, 2000); // Change image every 2 seconds
-    }
-  
-
-
-    const dialogueTexts = [
-      "The city is bustling with activity today. Traders from all corners of West-Africa have gathered here to exchange goods.\n",
-
-
-
-
-      
-    ];
-  
-    const dialogueBoxes = document.querySelectorAll('.dialogue-box');
-    const dialogueSpans = document.querySelectorAll('.dialogue-text');
-    const avatars = document.querySelectorAll('.avatar');
-    let index = 0;
-  
-    function typeWriter(text, spanElement, dialogueBox) {
-      let charIndex = 0;
-      const typing = setInterval(() => {
-        if (charIndex < text.length) {
-          spanElement.textContent += text.charAt(charIndex);
-          charIndex++;
-        } else {
-          clearInterval(typing);
-          index++;
-          if (index < dialogueTexts.length) {
-            dialogueBoxes[index].style.display = 'block'; // Show dialogue box
-            setTimeout(() => {
-              typeWriter(dialogueTexts[index], dialogueSpans[index], dialogueBoxes[index]);
-            }, 1000); // 1000ms delay between dialogues
-          }
-          window.location.href = "Drama3.html"
-        }
-      }, 100);
-    }
-  
-    // Initially show the first dialogue box and its avatar
-    dialogueBoxes[index].style.display = 'block';
-    avatars[index].style.display = 'block';
-  
-    // Start typing the first dialogue
-    typeWriter(dialogueTexts[index], dialogueSpans[index], dialogueBoxes[index]);
-  </script>
+  <script src= "Dialougue2.js" ></script>
   
 </body>
 </html>
