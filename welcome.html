@@ -2,21 +2,19 @@
 <html>
 <head>
     <title>Adventure's in Mali</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=8.0, user-scalable=no">
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Jacquard+12+Charted&family=Jacquard+24&family=Jersey+10+Charted&family=Press+Start+2P&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-</head>
-<style>
-
-
-
-
+    <style>
         html, body {
             height: 100%;
             margin: 90;
             padding: 0;
             background-color: #e9e9e9;
+            width: 100%;
+            touch-action: pan-y;
         }
 
         body {
@@ -25,68 +23,50 @@
             justify-content: space-between;
         }
 
-.intro2-image {
-    height: auto;
-    width: 820px;
-   
-    border: solid 4px black;
-}
+        .intro2-image {
+            height: auto;
+            width: 820px;
+            max-width: 200%;
+            border: solid 4px black;
+        }
 
-.adventure-title {
-    position: fixed;
-    z-index: 9999;
-    top: 90px;
-    background-color: #f2c94c;
-    border: 4px solid black;
-    padding: 5px;
-}
+        .adventure-title {
+            position: fixed;
+            z-index: 9999;
+            top: 5vh;
+            background-color: #f2c94c;
+            border: 4px solid black;
+            padding: 5px;
+        }
 
-.colonial-art {
-    position: fixed; /* Ensure positioning works */
-    right: 0px;
-    top: 300px;
-    
-    /* Add any other styles you want */
-}
+        .colonial-art {
+            position: fixed;
+            right: 0px;
+            top: 300px;
+        }
 
-.Base-structure {
+        .Base-structure {
             display: flex;
             align-items: center;
             justify-content: center;
             flex-grow: 1;
         }
 
-
         .intro_Question, .Yes_Button, .No_Button {
             display: block;
             text-align: center;
-            
         }
-
-
-        
-
-      
-
-
-
-
-
-
-
-</style>
-
+    </style>
+</head>
 <body style="background-color: #e9e9e9;">
     <div class="exit-container">
         <a href="Bye.html">
             <button>Quit Game</button>
         </a>
     </div>
-    <h1 class="adventure-title">*Adventure's in Mali*</h1>
+    <h1 class="adventure-title">*Adventure's In Mali*</h1>
     <div class="Base-structure">
-        
         <img src="intropic2.png" height="550" width="auto" alt="You enter the kingdom of Mali. The choice is yours" class="intro2-image">
-
     </div>
     <p class="intro"></p>
     <p class="intro_Question" style="display: none;">_Ready to embark on a journey of discovery and adventure?_</p>
@@ -96,18 +76,16 @@
     <a href="Bye.html" style="display: none;">
         <button class="No_Button"><big>*</big></button>
     </a>
-
-    <div class="colonial-art"> <!-- Added the missing closing angle bracket `>` here -->
-        <img src="sadio.png" width="256" height="380"> <!-- Set the width and height directly here -->
+    <div class="colonial-art">
+        <img src="sadio.png" width="256" height="380">
     </div>
-
     <script>
         const params = new URLSearchParams(window.location.search);
         const username = params.get('fname');
         const introText = "Hello, " + (username || 'User') + ", welcome to the ancient land of Mali. My name is Sadio, I will be guiding you through the legendary city of Djenne, surrounded by whispers of its rich history and hidden treasures.";
         const introElement = document.querySelector('.intro');
         let index = 0;
-        const speed = 50; 
+        const speed = 50;
         function type() {
             if (index < introText.length) {
                 introElement.innerHTML += introText.charAt(index);

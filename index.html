@@ -5,12 +5,19 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Jacquard+12+Charted&family=Jacquard+24&family=Jersey+10+Charted&family=Press+Start+2P&display=swap" rel="stylesheet">
     <style> 
-        .colonial-art {
-            position: fixed;
+        .fixed-header {
+            position: sticky;
+            top: 0;
+            padding-left: 34px;
+          
+            width: 100%;
+            z-index: 1000; /* Ensures the header stays on top */
+            padding: 10px;
+            text-align: center;
             
-            top: 50px;
-            left: 50px;
         }
+
+       
        
     </style>
 </head>
@@ -21,9 +28,9 @@
         </a>
     </div>
    
-    <div class="Base-structure">
-        <h1>*Adventure's in Mali*</h1>
-        <img src="intropic.png" height="550" alt="You enter the kingdom of Mali. The choice is yours">
+    <div class="BBase-structure">
+        <h1 class="fixed-header">*Adventure's In Mali*</h1>
+        <img src="2ndintro.png" height="450" alt="You enter the kingdom of Mali. The choice is yours">
         <form action="welcome.html" method="get">
             <div class="tracking-pad">
                 <label for="fname">Enter Name:</label>

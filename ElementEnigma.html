@@ -28,7 +28,7 @@
             height: 100%;
             border: 4px solid;
             display: none; /* Initially hidden */
-            background-color: #f2c94c;
+            background-color: #e9e9e9;
         }
         .game-text {
             padding-left: 2px;
@@ -42,7 +42,7 @@
             text-align: left;
             overflow: hidden;
             text-decoration: dotted;
-            background-color: #f2c94c;
+            background-color: #e9e9e9;
             margin: 0px;
         }
 
@@ -67,8 +67,6 @@
             background-color: #f2c94c;
         }
 
-       
-
         .cursor {
             display: inline-block;
             width: 10px;
@@ -87,15 +85,58 @@
                 opacity: 1;
             }
         }
+
+        body {
+            background-color: #e9e9e9;
+        }
+
+        /* Overlay and modal styles */
+        .overlay {
+            position: fixed;
+            display: none; /* Hidden by default */
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5); /* Black background with transparency */
+            z-index: 1000; /* Ensure it is on top */
+        }
+        .overlay-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: #f2c94c;
+            border: 4px solid #000;
+            font-family: 'Press Start 2P';
+            text-align: center;
+            
+        }
+        .overlay-content img {
+            display: block;
+            margin: 20px auto 0;
+            width: 100px;
+            height: 100px;
+        }
     </style>
 </head>
 <body>
     <h1>*Adventure's In Mali*</h1>
     <div class="game-text" id="gameText"></div>
-    <div class="Alchemy-instruction" id="AlchemyInst">Objective: Combine the elements.</div>
+    <div class="Alchemy-instruction" id="AlchemyInst">*************************************
+    </div>
     <div class="element-container" id="elementContainer"> created elements: </div>
     <p id="uMade"></p>
     <p id="dall"></p>
+    <div id="winOverlay" class="overlay">
+        <div class="overlay-content">
+            Congratulations! You have made Obsidian and won the game!
+            <img src="obsidian.png" alt="Obsidian">
+        </div>
+    </div>
 
     <script>
         var gameText = `In the land where Mansa Musa's footsteps echo,
@@ -112,6 +153,7 @@ To unlock the power, reveal the view...`;
         var gameTextElement = document.getElementById("gameText");
         var alchemyInstruction = document.getElementById("AlchemyInst");
         var elementContainer = document.getElementById("elementContainer");
+        var winOverlay = document.getElementById("winOverlay");
         var index = 0;
 
         // Add a cursor to the game text element
@@ -129,17 +171,13 @@ To unlock the power, reveal the view...`;
                 }
                 gameTextElement.insertBefore(document.createTextNode(gameText.charAt(index)), cursor);
                 index++;
-                var speed = 20 + Math.random() * 20; // Random speed between 50ms and 100ms
+                var speed = 20 + Math.random() * 20; // Random speed between 20ms and 40ms
                 setTimeout(typeWriter, speed);
             } else {
                 cursor.style.display = "none"; // Hide cursor after typing is done
                 alchemyInstruction.style.display = "block"; // Show instruction
                 elementContainer.style.display = "block"; // Show element container
             }
-        }
-
-        window.onload = function() {
-            typeWriter(); // Start typing the game text
         }
 
         var elements = ["earth", "air", "fire", "water"];
@@ -217,9 +255,6 @@ To unlock the power, reveal the view...`;
         function allowDrop(event) {
             event.preventDefault();
         }
-        function drag(event) {
-            event.dataTransfer.setData("text", event.target.alt);
-        }
 
         function combineElements(elem1, elem2) {
             code = elements.length;
@@ -227,6 +262,11 @@ To unlock the power, reveal the view...`;
                 if (elements.indexOf(make[i]) === -1 && elements.indexOf(elem1) >= 0 && elements.indexOf(elem2) >= 0 && ((elem1 === el1[i] && elem2 === el2[i]) || (elem1 === el2[i] && elem2 === el1[i]))) {
                     elements.push(make[i]);
                     newcomers.push(make[i]);
+
+                    // Check for win condition
+                    if (make[i] === "obsidian") {
+                        winOverlay.style.display = "block"; // Display the win overlay
+                    }
                 }
             }
             displayElements();
@@ -245,7 +285,6 @@ To unlock the power, reveal the view...`;
                 all.push(make[i]);
             }
         }
-        
 
         function checkCollision(img) {
             var draggableImages = document.querySelectorAll('img');
