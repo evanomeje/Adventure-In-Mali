@@ -21,7 +21,7 @@
       margin-right: 10px;
       float: left;
       border: 4px solid black;
-      display: none; /* Initially hide avatars */
+      display: none; 
     }
 
     .dialouge-container {
@@ -47,7 +47,7 @@
     }
 
     .dialogue-text {
-      white-space: pre-wrap; /* Allow text to wrap */
+      white-space: pre-wrap; 
       overflow: hidden;
       border-right: .15em solid black;
       font-family: 'Outfit';
@@ -60,17 +60,16 @@
       overflow-y: hidden;
     }
 
-    /* Slideshow styles */
     .slideshow-container {
       position: relative;
-      max-width: 620px; /* Adjust max-width as needed */
+      max-width: 620px; 
       margin: auto;
       align-items: right;
       left: 4px;
     }
 
     .name {
-  font-size: 55px; /* Change this value to the desired font size */
+  font-size: 55px; 
   font-weight: bold;
 }
 
@@ -79,7 +78,7 @@
       position: absolute;
       width: 610px;
       height: auto;
-      transition: opacity 1s ease; /* Fade transition */
+      transition: opacity 1s ease; 
       align-items: right;
       left: 265px;
       top: -80px;
@@ -108,7 +107,6 @@
     </div>
   </div>
 
-  <!-- Slideshow container -->
   <div class="slideshow-container">
     <img class="slides fade" src="people.png" width="620" height="300">
     <img class="slides fade" src="people.png" width="620" height="300">
@@ -124,73 +122,6 @@
     <img src="mainsoldie8r2.png" width="620" height="auto">
   </div>
 
-  <script>
-    // JavaScript code for the slideshow goes here
-    let slideIndex = 0;
-    showSlides();
-
-    function showSlides() {
-      let slides = document.getElementsByClassName("slides");
-      for (let i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";
-      }
-      slideIndex++;
-      if (slideIndex > slides.length) { slideIndex = 1 }
-      slides[slideIndex - 1].style.display = "block";
-      setTimeout(showSlides, 2000); // Change image every 2 seconds
-    }
-  
-    const dialogueTexts = [
-    "AH, MY PIPU! WELCOME, WELCOME TO MY SHOP OF WONDERS!",
-"I DEY FEEL SAY DESTINY DON BRING U PIPU HERE FOR ANSWERS.",
-"NO WORRY SHA, INSIDE THIS SMALL SMALL SHOP WEY I DEY SELL,",
-"YOU GO SEE DI KEY WEY YOU DEY FIND."
-
-    ];
-
-    const dialogueBox = document.querySelector('.dialogue-box');
-    const dialogueSpan = document.querySelector('.dialogue-text');
-    const avatar = document.querySelector('.avatar');
-    let index = 0;
-
-    function typeWriter(text, spanElement, callback) {
-      let charIndex = 0;
-      spanElement.innerHTML = ''; // Clear the previous text
-      const typing = setInterval(() => {
-        if (charIndex < text.length) {
-          spanElement.innerHTML += text.charAt(charIndex);
-          charIndex++;
-          
-        } else {
-          clearInterval(typing);
-          if (callback) callback();
-          
-        }
-      }, 100);
-    }
-
-    function showNextDialogue() {
-  if (index < dialogueTexts.length) {
-    dialogueBox.style.display = 'block';
-    avatar.style.display = 'block';
-    typeWriter(dialogueTexts[index], dialogueSpan, () => {
-      index++;
-      // Check if there are more dialogues to show
-      if (index < dialogueTexts.length) {
-        setTimeout(showNextDialogue, 200); // Delay before showing the next dialogue
-      }
-
-      if (index === dialogueTexts.length) { 
-        setTimeout(showNextDialogue, 5000);
-        window.location.href = "objective1.html";
-      }
-    });
-  }
-}
-
-    // Start typing the first dialogue
-    showNextDialogue();
-    
-  </script>
+  <script src= "Dialougue3.js"></script>
 </body>
 </html>
