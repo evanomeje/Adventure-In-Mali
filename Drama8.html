@@ -53,30 +53,6 @@
     <img class="slides fade" src="k.png" width="620" height="300">
   </div>
 
-  <script>
-    let slideIndex = 0;
-    let cycleCount = 0;
-    const totalCycles = 1; // Change this to the number of cycles you want before redirecting
-    const slides = document.getElementsByClassName("slides");
-
-    function showSlides() {
-      for (let i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";
-      }
-      slideIndex++;
-      if (slideIndex > slides.length) {
-        slideIndex = 1;
-        cycleCount++;
-      }
-      slides[slideIndex - 1].style.display = "block";
-      if (cycleCount >= totalCycles) {
-        window.location.href = "Drama9.html";
-      } else {
-        setTimeout(showSlides, 1000); // Change image every 1 second
-      }
-    }
-
-    showSlides();
-  </script>
+  <script src= "Slideshow2.js" ></script>
 </body>
 </html>
