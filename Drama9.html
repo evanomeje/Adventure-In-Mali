@@ -15,13 +15,13 @@
       margin-right: 10px;
       float: left;
       border: 4px solid black;
-      display: none; /* Initially hide avatars */
+      display: none; 
     }
 
     .dialogue-container {
       top: 100px;
       margin: 10px;
-      position: relative; /* Ensure dialogue-container does not affect .art */
+      position: relative; 
     }
 
     .dialogue-box {
@@ -33,9 +33,9 @@
       overflow: hidden;
       display: none;
       background-color: #f2c94c;
-      max-width: 800px; /* Adjusted width */
+      max-width: 800px; 
       height: auto;
-      word-wrap: break-word; /* Allow word wrapping */
+      word-wrap: break-word; 
     }
 
     .angry-dialogue-box {
@@ -46,14 +46,14 @@
       margin-bottom: 20px;
       overflow: hidden;
       display: none;
-      background-color: #d65c5c; /* Different background color for angry dialogue */
-      max-width: 800px; /* Adjusted width */
+      background-color: #d65c5c; 
+      max-width: 800px; 
       height: auto;
-      word-wrap: break-word; /* Allow word wrapping */
+      word-wrap: break-word; 
     }
 
     .dialogue-text {
-      white-space: pre-wrap; /* Preserve whitespace and allow wrapping */
+      white-space: pre-wrap; 
       overflow: hidden;
       border-right: .15em solid black;
       font-family: 'Outfit';
@@ -62,7 +62,7 @@
     }
 
     .angry-dialogue-box .dialogue-text {
-      font-size: 35px; /* Different font size for angry dialogue text */
+      font-size: 35px; 
     
     }
 
@@ -72,9 +72,9 @@
 
     .art {
       position: fixed;
-      top: 0; /* Adjust as necessary */
-      left: 0; /* Adjust as necessary */
-      z-index: -1; /* Ensure it's behind the dialogue boxes */
+      top: 0; 
+      left: 0; 
+      z-index: -1; 
     }
 
     .name {
@@ -82,25 +82,23 @@
       font-weight: bold;
     }
 
-    /* Customize the width of the scrollbar */
+
     ::-webkit-scrollbar {
-      width: 25px; /* Width of the entire scrollbar */
+      width: 25px; 
     }
 
-    /* Customize the track (the empty space within the scrollbar) */
+
     ::-webkit-scrollbar-track {
-      background: #000; /* Color of the scrollbar track */
+      background: #000; 
     }
 
-    /* Customize the thumb (the draggable part of the scrollbar) */
     ::-webkit-scrollbar-thumb {
-      background-color: #000; /* Color of the scrollbar thumb */
+      background-color: #000; 
       border: #f2c94c solid;
     }
 
-    /* Customize the thumb on hover */
     ::-webkit-scrollbar-thumb:hover {
-      background: #f2c94c ; /* Color of the scrollbar thumb on hover */
+      background: #f2c94c ; 
     }
   </style>
 </head>
@@ -131,66 +129,6 @@
     <img src="angryscene.png" width="1370" height="auto">
   </div>
 
-  <script>
-    const dialogueTexts = [
-      "Now why where you listening to our conversation??🤬",
-      "My brother please, we are just looking for the Hidden Temple of Kangaba😭",
-      "Ahhh Kofi relax, you travelers must trek across the sahara desert.*:･ﾟ✧",
-      "Yes, Kofi is right the music and spirts will guide you there.*:･ﾟ✧"
-    ];
-  
-    const typingSpeeds = [
-      50, // Faster speed for Kofi's dialogue
-      100,
-      100,
-      100
-    ];
-  
-    const dialogueBoxes = document.querySelectorAll('.dialogue-box, .angry-dialogue-box');
-    const dialogueSpans = document.querySelectorAll('.dialogue-text');
-    const avatars = document.querySelectorAll('.avatar');
-    let index = 0;
-
-    function redirectToQuestionnaire() {
-      window.location.href = 'DramaSaharaDesert.html';
-    }
-  
-    function typeWriter(text, spanElement, dialogueBox, typingSpeed) {
-      let charIndex = 0;
-      const typing = setInterval(() => {
-        if (charIndex < text.length) {
-          spanElement.textContent += text.charAt(charIndex);
-          charIndex++;
-        } else {
-          clearInterval(typing);
-          index++;
-          if (index < dialogueTexts.length) {
-            dialogueBoxes[index].style.display = 'block'; // Show dialogue box
-            avatars[index].style.display = 'block'; // Show avatar
-            scrollToLatestDialogue(); // Scroll to the latest dialogue
-            setTimeout(() => {
-              typeWriter(dialogueTexts[index], dialogueSpans[index], dialogueBoxes[index], typingSpeeds[index]);
-            }, 1000); // 1000ms delay between dialogues
-          } else {
-            // Redirect to the questionnaire when done
-            setTimeout(redirectToQuestionnaire, 1000); // Adjust delay as needed
-          }
-        }
-      }, typingSpeed);
-    }
-
-    function scrollToLatestDialogue() {
-      const latestDialogue = dialogueBoxes[index];
-      latestDialogue.scrollIntoView({ behavior: 'smooth', block: 'end' });
-    }
-  
-    // Initially show the first dialogue box and its avatar
-    dialogueBoxes[index].style.display = 'block';
-    avatars[index].style.display = 'block';
-    scrollToLatestDialogue(); // Ensure the initial dialogue is in view
-  
-    // Start typing the first dialogue
-    typeWriter(dialogueTexts[index], dialogueSpans[index], dialogueBoxes[index], typingSpeeds[index]);
-  </script>
+  <script src="Dialougue9.js"></script>
 </body>
 </html>
