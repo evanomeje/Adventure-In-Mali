@@ -82,49 +82,6 @@
     </div>
   </div>
 
-  <script>
-    const dialogueTexts = [
-      "Uhoh the temple starts to shake!"
-    ];
-
-    const dialogueBox = document.querySelector('.dialogue-box');
-    const dialogueSpan = document.querySelector('.dialogue-text');
-    let index = 0;
-
-    function typeWriter(text, spanElement, callback) {
-      let charIndex = 0;
-      spanElement.innerHTML = ''; // Clear the previous text
-      const typing = setInterval(() => {
-        if (charIndex < text.length) {
-          spanElement.innerHTML += text.charAt(charIndex);
-          charIndex++;
-        } else {
-          clearInterval(typing);
-          if (callback) callback();
-        }
-      }, 50); // Increase typing speed by reducing interval duration
-    }
-
-    function showNextDialogue() {
-      if (index < dialogueTexts.length) {
-        dialogueBox.style.display = 'block';
-        typeWriter(dialogueTexts[index], dialogueSpan, () => {
-          index++;
-          // Check if there are more dialogues to show
-          if (index < dialogueTexts.length) {
-            setTimeout(showNextDialogue, 900); // Delay before showing the next dialogue
-          }
-
-          if (index === dialogueTexts.length) { 
-            setTimeout(showNextDialogue, 5000);
-            window.location.href = "Drama14.html";
-          }
-        });
-      }
-    }
-
-    // Start typing the first dialogue
-    showNextDialogue();
-  </script>
+  <script src="Dialougue13.js"></script>
 </body>
 </html>
