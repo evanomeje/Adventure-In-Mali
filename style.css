@@ -101,11 +101,13 @@ form {
     border: 4px solid black;
     padding: 10px;
     position: relative;
-    top: -155px;
+    top: -147px; /* <-- Change this value to move down */
     font-weight: bold;
     text-align: left;
     background-color: #f2c94c;
+    /* bottom: 2905px; <-- REMOVE THIS */
 }
+
 
 
 .intro_Question {
@@ -135,12 +137,13 @@ form {
     margin-left: auto;
     margin-right: auto;
     text-align: center;
+    top: auto;
 }
 
 .Yes_Button {
     position: absolute;
-   top: 738px;
-    right: 330px;
+   top: 731.5px;
+    right: 296px;
     color: #8dc14d;
 }
 
@@ -149,8 +152,8 @@ form {
 }
 
 .No_Button {
-    top: 738.5px;
-    right: 270px;
+    top: 731.5px; /**/
+    right: 237px;
     color: #d65c5c;
 }
 .No_Button:hover {
