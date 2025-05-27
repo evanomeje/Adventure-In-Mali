@@ -3,166 +3,658 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adventure's in Mali - Puzzle Round</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Adventure's in Mali - Ceremonial Mask Builder</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Jacquard+12+Charted&family=Jacquard+24&family=Jersey+10+Charted&family=Press+Start+2P&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: #f2c94c;
+            min-height: 100vh;
+            color: black;
+        }
+
+        .game-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .game-header {
+            text-align: center;
+            margin-bottom: 30px;
+            background: #f0f0f0;
+            padding: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            border: 3px solid black;
+        }
+
+        .game-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: black;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            font-family: 'Press Start 2P';
+        }
+
+        .objective {
+            font-size: 1.2rem;
+            color: black;
+            font-weight: 400;
+        }
+
+        .game-content {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .materials-section {
+            background: #f0f0f0;
+            padding: 25px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 3px solid black;
+        }
+
+        .materials-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: black;
+            text-align: center;
+        }
+
+        .materials-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .material-item {
+            background: #f0f0f0;
+            border: 3px solid black;
+            padding: 15px 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border-radius: 0px;
+        }
+
+        .material-item:hover {
+            border-color: black;
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .material-item:hover .material-icon {
+            transform: scale(2.1);
+        }
+
+        .material-item:hover .material-icon img {
+            transform: scale(2.05);
+        }
+
+        .material-item.selected {
+            border-color: black;
+            background: #f2c94c;
+            transform: scale(1.05);
+        }
+
+        .material-item.selected::after {
+            content: '✓';
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: black;
+            color: #f0f0f0;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .material-icon {
+            width: 120px;
+            height: 120px;
+            background: #f0f0f0;
+            border: 2px solid black;
+            border-radius: 8px;
+            margin: 0 auto 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .material-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 4px;
+            transition: transform 0.3s ease;
+        }
+
+        .material-name {
+            font-size: 1.0rem;
+            font-weight: 500;
+            color: black;
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .hint-section {
+            background: #f0f0f0;
+            color: #f0f0f0;
+            padding: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            border: 2px solid black;
+        }
+
+        .hint-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: black;
+        }
+
+        .hint-text {
+            font-style: normal;
+            line-height: 1.5;
+            font-size: 0.95rem;
+            color: black;
+        }
+
+        .selected-materials {
+            background: #f0f0f0;
+            padding: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 2px solid black;
+        }
+
+        .selected-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: black;
+        }
+
+        .selected-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .selected-item {
+            background: #f2c94c;
+            color: black;
+            padding: 8px 12px;
+            margin-bottom: 8px;
+            border-radius: 20px;
+            border: 2px solid black;
+            font-size: 1.2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 500;
+        }
+
+        .remove-btn {
+            background: black;
+            border: none;
+            color: #f0f0f0;
+            cursor: pointer;
+            font-size: 16px;
+            padding: 0;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .remove-btn:hover {
+            background: #f0f0f0;
+            color: black;
+            border: 1px solid black;
+        }
+
+        .action-section {
+            background: transparent;
+            padding: 25px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: none;
+            text-align: center;
+        }
+
+        .submit-btn {
+            background: black;
+            color: #f0f0f0;
+            border: 3px solid black;
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-right: 15px;
+        }
+
+        .submit-btn:hover {
+            background: #f2c94c;
+            color: black;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        .reset-btn {
+            background: #f0f0f0;
+            color: black;
+            border: 3px solid black;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .reset-btn:hover {
+            background: #f2c94c;
+            transform: translateY(-2px);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #f0f0f0;
+            border: 2px solid black;
+            border-radius: 6px;
+            margin: 15px 0;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: green;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .game-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .materials-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .game-title {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .materials-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .material-icon {
+                width: 100px;
+                height: 100px;
+            }
+        }
+
+       .feedback {
+    margin-top: 20px;
+    padding: 20px;
+    font-weight: 700; /* Bolder text */
+    text-align: center;
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+    border: black solid 3px;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transform: translateY(10px);
+    width: 100%;
+}
+
+.feedback.show {
+    opacity: 1;
+    max-height: 200px;
+    transform: translateY(0);
+    margin-bottom: 15px;
+}
+
+/* SUCCESS - Bold Green Version */
+.feedback.success {
+    background: green; /* Vibrant green */
+    color: white;
+    border-left: 6px solid #2E7D32; /* Darker green border */
+    animation: pulseSuccess 1.5s ease infinite;
+}
+
+/* ERROR - Bold Red Version */
+.feedback.error {
+    background: red; /* Vibrant red */
+    color: #f0f0f0;
+    border-left: 10px solid black; /* Darker red border */
+    animation: pulseError 1.5s ease infinite;
+}
+
+/* Success Pulse Animation */
+@keyframes pulseSuccess {
+    0% { 
+        box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.7);
+        transform: scale(1);
+    }
+    70% { 
+        box-shadow: 0 0 0 12px rgba(76, 175, 80, 0);
+        transform: scale(1.02);
+    }
+    100% { 
+        box-shadow: 0 0 0 0 rgba(76, 175, 80, 0);
+        transform: scale(1);
+    }
+}
+
+/* Error Pulse Animation */
+@keyframes pulseError {
+    0% { 
+        box-shadow: 0 0 0 0 rgba(244, 67, 54, 0.7);
+        transform: scale(1);
+    }
+    70% { 
+        box-shadow: 0 0 0 12px rgba(244, 67, 54, 0);
+        transform: scale(1.02);
+    }
+    100% { 
+        box-shadow: 0 0 0 0 rgba(244, 67, 54, 0);
+        transform: scale(1);
+    }
+}
+
+/* Ripple Effect for Both */
+.feedback.success::after,
+.feedback.error::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 6px;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    animation: ripple 1.5s ease-out infinite;
+    pointer-events: none;
+    opacity: 0;
+}
+
+@keyframes ripple {
+    0% {
+        transform: scale(0.96);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1.04);
+        opacity: 0;
+    }
+}
+    </style>
 </head>
-<style>
-    
-
-    .sketchfab-embed-wrapper img {
-        max-width: 300px;
-        max-height: auto;
-        border: 4px solid black;
-    }
-
-    .sketchfab-embed-wrapper p.text {
-    left: 35x;
-
-        border:4px solid black;
-        background-color: #f2c94c;
-    }
-
-
-
-</style>
 <body>
-    <h1>*Adventure's in Mali*</h1>
+    <div class="game-container">
+        <div class="game-header">
+            <h1 class="game-title">*Adventure's in Mali*</h1>
+            <p class="objective">Create your ceremonial mask by selecting the right materials</p>
+        </div>
 
-    <div id="market-challenge-game-display" class="market-challenge-game-display">
-
-       
-        <div id="game-box" class="game-box">
-            <div id="market-challenge-instruction" class="market-challenge-instruction">
-                <p>Objective: 
-                    Gather materials to create your ceremonial mask.</p>
+        <div class="game-content">
+            <div class="materials-section">
+                <h2 class="materials-title">Available Materials</h2>
+                <div class="materials-grid">
+                    <div class="material-item" data-material="calabash">
+                        <div class="material-icon">
+                            <img src="calabash.png" alt="Calabash">
+                        </div>
+                        <div class="material-name">Calabash</div>
+                    </div>
+                    <div class="material-item" data-material="clay">
+                        <div class="material-icon">
+                            <img src="clay.png" alt="Clay">
+                        </div>
+                        <div class="material-name">Clay</div>
+                    </div>
+                    <div class="material-item" data-material="beads">
+                        <div class="material-icon">
+                            <img src="beads.png" alt="Beads">
+                        </div>
+                        <div class="material-name">Beads</div>
+                    </div>
+                    <div class="material-item" data-material="leather">
+                        <div class="material-icon">
+                            <img src="hausa_leather_bag.png" alt="Hausa Leather Bag">
+                        </div>
+                        <div class="material-name">Hausa Leather Bag</div>
+                    </div>
+                    <div class="material-item" data-material="cowrie">
+                        <div class="material-icon">
+                            <img src="cowrie.png" alt="Cowrie">
+                        </div>
+                        <div class="material-name">Cowrie</div>
+                    </div>
+                    <div class="material-item" data-material="pigment">
+                        <div class="material-icon">
+                            <img src="pigment.png" alt="Pigment">
+                        </div>
+                        <div class="material-name">Pigment</div>
+                    </div>
+                    <div class="material-item" data-material="manilla">
+                        <div class="material-icon">
+                            <img src="manilla.png" alt="Manilla">
+                        </div>
+                        <div class="material-name">Manilla</div>
+                    </div>
+                    <div class="material-item" data-material="knife">
+                        <div class="material-icon">
+                            <img src="knife.png" alt="Knife">
+                        </div>
+                        <div class="material-name">Knife</div>
+                    </div>
+                    <div class="material-item" data-material="statue">
+                        <div class="material-icon">
+                            <img src="bamum.png" alt="Bamum Bead Statue">
+                        </div>
+                        <div class="material-name">Bamum Bead Statue</div>
+                    </div>
+                    <div class="material-item" data-material="fish">
+                        <div class="material-icon">
+                            <img src="fish.png" alt="Fish">
+                        </div>
+                        <div class="material-name">Fish</div>
+                    </div>
+                    <div class="material-item" data-material="wood">
+                        <div class="material-icon">
+                            <img src="woode.png.jpg" alt="Wood">
+                        </div>
+                        <div class="material-name">Wood</div>
+                    </div>
+                    <div class="material-item" data-material="skull">
+                        <div class="material-icon">
+                            <img src="skull.png" alt="Turtle Skull">
+                        </div>
+                        <div class="material-name">Turtle Skull</div>
+                    </div>
+                    <div class="material-item" data-material="bracelet">
+                        <div class="material-icon">
+                            <img src="braclet.png" alt="Benin Bracelet">
+                        </div>
+                        <div class="material-name">Benin Bracelet</div>
+                    </div>
+                    <div class="material-item" data-material="tusk">
+                        <div class="material-icon">
+                            <img src="tusk.png" alt="Ivory Tusk">
+                        </div>
+                        <div class="material-name">Ivory Tusk</div>
+                    </div>
+                    <div class="material-item" data-material="spoon">
+                        <div class="material-icon">
+                            <img src="spoon.png" alt="Carved Spoon">
+                        </div>
+                        <div class="material-name">Carved Spoon</div>
+                    </div>
+                    <div class="material-item" data-material="bronze">
+                        <div class="material-icon">
+                            <img src="Benin bronze.png" alt="Bronze Head">
+                        </div>
+                        <div class="material-name">Bronze Head</div>
+                    </div>
+                </div>
             </div>
 
-     
-    <div class="sketchfab-embed-wrapper">
-        <img src="calabash.png" alt="Calabash Image">
-        <p class="text">✣ Calabash</p>
+            <div class="sidebar">
+                <div class="hint-section">
+                    <h3 class="hint-title">Hint</h3>
+                    <p class="hint-text">Your wooden beaded mask is shelled and carved, filled with pigments and sharpened by the desires of your mind</p>
+                </div>
+
+                <div class="selected-materials">
+                    <h3 class="selected-title">Selected Materials</h3>
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                    <ul class="selected-list" id="selectedList">
+                        <!-- Selected materials will appear here -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="action-section">
+            <button class="submit-btn" onclick="checkAnswer()">Create Mask</button>
+            <button class="reset-btn" onclick="resetSelection()">Reset</button>
+            <div class="feedback" id="feedback"></div>
+        </div>
     </div>
 
-    <div class="sketchfab-embed-wrapper">
-        <img src="clay.png" alt="Clay Image">
-        <p class="text">✣ Clay</p>
-    </div>
+    <script>
+    let selectedMaterials = new Set();
+    let attempts = 0;
+    const correctAnswer = [ 'beads', 'knife', 'pigment', 'cowrie', 'wood'];
 
-    <div class="sketchfab-embed-wrapper">
-        <img src="beads.png" alt="Beads Image">
-        <p class="text">✣ Beads</p>
-    </div>
+    function updateProgressBar() {
+        const progress = (selectedMaterials.size / correctAnswer.length) * 100;
+        document.querySelector('.progress-fill').style.width = progress + '%';
+    }
 
-    <div class="sketchfab-embed-wrapper">
-        <img src="hausa_leather_bag.png" alt="Hausa Leather Bag Image">
-        <p class="text">✣ Hausa Leather Bag</p>
-    </div>
-
-    <div class="sketchfab-embed-wrapper">
-        <img src="cowrie.png" alt="Cowrie Image">
-        <p class="text">✣ Cowrie</p>
-    </div>
-
-    <div class="sketchfab-embed-wrapper">
-        <img src="pigment.png" alt="Pigment Image">
-        <p class="text">✣ Pigment</p>
-    </div>
-
-    <div class="sketchfab-embed-wrapper">
-        <img src="manilla.png" alt="Manilla Image">
-        <p class="text">✣ Manilla</p>
-    </div>
-
-    <div class="sketchfab-embed-wrapper">
-        <img src="knife.png" alt="Knife Image">
-        <p class="text">✣ Knife</p>
-    </div>
-
-    <div class="sketchfab-embed-wrapper">
-        <img src="bamum.png" alt="Bamum Bead Statue Image">
-        <p class="text">✣ Bamum Bead Statue</p>
-    </div>
-
-    <div class="sketchfab-embed-wrapper">
-        <img src="fish.png" alt="Fish Image">
-        <p class="text">✣ Fish</p>
-    </div>
-
-    <div class="sketchfab-embed-wrapper">
-        <img src="woode.png.jpg" alt="Wood Image">
-        <p class="text">✣ Wood</p>
-    </div>
-
-    <div class="sketchfab-embed-wrapper">
-        <img src="skull.png" alt="Turtle Skull">
-        <p class="text">✣ Turtle Skull</p>
-    </div>
-
-    <div class="sketchfab-embed-wrapper">
-        <img src="braclet.png" alt="Benin Bracelet Image">
-        <p class="text">✣ Benin Bracelet</p>
-    </div>
-
-    <div class="sketchfab-embed-wrapper">
-        <img src="tusk.png" alt="Ivory Tusk Image">
-        <p class="text">✣ Ivory Tusk</p>
-    </div>
-
-    <div class="sketchfab-embed-wrapper">
-        <img src="spoon.png" alt="Carved Spoon Image">
-        <p class="text">✣ Carved Spoon</p>
-    </div>
-
-    <div class="sketchfab-embed-wrapper">
-        <img src="Benin bronze.png" alt="Bronze Head Image">
-        <p class="text">✣ Bronze Head</p>
-    </div>
+    function updateSelectedList() {
+        const list = document.getElementById('selectedList');
+        list.innerHTML = '';
         
-
-
-           
-       
-            
-         
-        </div>
-
-
+        selectedMaterials.forEach(material => {
+            const li = document.createElement('li');
+            li.className = 'selected-item';
+            li.innerHTML = `
+                <span>${material.charAt(0).toUpperCase() + material.slice(1)}</span>
+                <button class="remove-btn" onclick="removeMaterial('${material}')">×</button>
+            `;
+            list.appendChild(li);
+        });
         
+        updateProgressBar();
+    }
 
-       
+    function toggleMaterial(materialElement, material) {
+        if (selectedMaterials.has(material)) {
+            selectedMaterials.delete(material);
+            materialElement.classList.remove('selected');
+        } else {
+            selectedMaterials.add(material);
+            materialElement.classList.add('selected');
+        }
+        updateSelectedList();
+    }
 
-        <div id="show-collection" class="show-collection">
+    function removeMaterial(material) {
+        selectedMaterials.delete(material);
+        document.querySelector(`[data-material="${material}"]`).classList.remove('selected');
+        updateSelectedList();
+    }
 
-            <div id="collection-text" class="collection-text"></div>
+    function showFeedback(message, type) {
+        const feedback = document.getElementById('feedback');
+        feedback.textContent = message;
+        feedback.className = `feedback ${type} show`;
+        
+        setTimeout(() => {
+            feedback.classList.remove('show');
+        }, 3000);
+    }
 
-             
-        </div>
-    </div>
+    function checkAnswer() {
+    if (selectedMaterials.size === 0) {
+        showFeedback('Please select some materials first!', 'error');
+        return;
+    }
 
-    <div id="market-challenge-hint" class="market-challenge-hint">
-        <p>*Hint: Your beaded mask is shelled and carved,  
-        coloured with materials of the earth and sharpened
-        by the desires of your mind*</p>
-    </div>
+    const selectedArray = Array.from(selectedMaterials).sort();
+    const correctArray = correctAnswer.sort();
+    const isCorrect = selectedArray.length === correctArray.length && 
+                     selectedArray.every((value, index) => value === correctArray[index]);
 
-    
+    if (isCorrect) {
+        showFeedback('Congratulations! You\'ve created the ceremonial mask!', 'success');
+    } else {
+        attempts++;
+        if (attempts > 1) {
+            document.querySelector('.hint-text').textContent = 
+                'The correct materials are: Wood, Beads, Knife, Pigment, amd Cowrie';
+            showFeedback('The correct answer has been revealed in the hint section!', 'error');
+        } else {
+            showFeedback('Not quite right. Try again!', 'error');
+        }
+    }
+}
 
-    <form id="PuzzleGame" action="index.html" method="get" class="form-container">
-        <div class="mtracking-pad">
-            <label for="fname">Enter:</label>
-            <input type="text" id="fname" name="fname" placeholder="*" required>
-        </div>
-        <div id="options-container"></div>
-        <button type="button" class="MYes_Button" onclick="checkAnswer()"><big>*</big></button>
-        <button type="button" class="MNo_Button" onclick="resetInput()"><big>*</big></button>
-    </form>
+    function resetSelection() {
+        selectedMaterials.clear();
+        document.querySelectorAll('.material-item').forEach(item => {
+            item.classList.remove('selected');
+        });
+        updateSelectedList();
+        document.getElementById('feedback').classList.remove('show');
+    }
 
-    <script src="MarketChallenge.js"></script>
-    <script src="popup.js"></script>
+    // Add click event listeners to material items
+    document.querySelectorAll('.material-item').forEach(item => {
+        item.addEventListener('click', function() {
+            const material = this.dataset.material;
+            toggleMaterial(this, material);
+        });
+    });
+</script>
 </body>
 </html>
