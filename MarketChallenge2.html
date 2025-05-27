@@ -353,7 +353,7 @@
 .feedback.success {
     background: green; /* Vibrant green */
     color: white;
-    border-left: 6px solid #2E7D32; /* Darker green border */
+    border-left: 10px solid black;
     animation: pulseSuccess 1.5s ease infinite;
 }
 
@@ -627,6 +627,9 @@
 
     if (isCorrect) {
         showFeedback('Congratulations! You\'ve created the ceremonial mask!', 'success');
+        setTimeout(() => {
+            window.location.href = "Drama4.html";
+        }, 1500);
     } else {
         attempts++;
         if (attempts > 1) {
