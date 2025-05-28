@@ -528,36 +528,38 @@
             }
 
             showResult(correct, total, isSuccess) {
-                const modal = document.getElementById('resultModal');
-                const title = document.getElementById('resultTitle');
-                const score = document.getElementById('resultScore');
-                const continueBtn = document.getElementById('continueBtn');
+    const modal = document.getElementById('resultModal');
+    const title = document.getElementById('resultTitle');
+    const score = document.getElementById('resultScore');
+    const continueBtn = document.getElementById('continueBtn');
 
-                if (isSuccess) {
-                    title.textContent = 'Path Remembered!';
-                    title.style.color = '#4facfe';
-                    score.textContent = `Perfect! ${correct}/${total} directions correct\nCurrent Score: ${this.score}`;
-                    continueBtn.textContent = 'Continue Journey';
-                    continueBtn.onclick = () => {
-                        modal.classList.remove('show');
-                        this.roundNumber++;
-                        this.playerAnswer = [];
-                        this.generateSequence();
-                        setTimeout(() => this.showRoundQuest(), 500);
-                    };
-                } else {
-                    title.textContent = 'Lost in the Desert';
-                    title.style.color = '#f5576c';
-                    score.textContent = `You got ${correct}/${total} directions correct\nFinal Score: ${this.score}`;
-                    continueBtn.textContent = 'Start New Journey';
-                    continueBtn.onclick = () => {
-                        modal.classList.remove('show');
-                        window.location.reload();
-                    };
-                }
+    if (isSuccess) {
+        title.textContent = 'Path Remembered!';
+        title.style.color = '#4facfe';
+        score.textContent = `Perfect! ${correct}/${total} directions correct\nCurrent Score: ${this.score}`;
+        continueBtn.textContent = 'Continue Journey';
+        continueBtn.onclick = () => {
+            modal.classList.remove('show');
+            this.roundNumber++;
+            this.playerAnswer = [];
+            this.generateSequence();
+            setTimeout(() => this.showRoundQuest(), 500);
+        };
+    } else {
+        title.textContent = 'Lost in the Desert';
+        title.style.color = '#f5576c';
+        score.textContent = `You got ${correct}/${total} directions correct\nFinal Score: ${this.score}`;
+        continueBtn.textContent = 'Exit';
+        continueBtn.onclick = () => {
+            modal.classList.remove('show');
+            setTimeout(() => {
+                window.location.href = "Drama10.html";
+            }, 1000);
+        };
+    }
 
-                modal.classList.add('show');
-            }
+    modal.classList.add('show');
+}
 
             sleep(ms) {
                 return new Promise(resolve => setTimeout(resolve, ms));
